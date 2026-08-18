@@ -119,6 +119,60 @@
     color:var(--ink-faint);
   }
 
+  /* ---------- message box ---------- */
+  .message-panel{
+    margin-top:36px;
+    padding:20px 20px 22px 20px;
+    background:var(--paper-dark);
+    border:1px solid var(--rule);
+  }
+  .message-panel .section-label{margin-bottom:12px;}
+  .message-panel p{
+    font-size:.78rem;
+    color:var(--ink-soft);
+    margin:0 0 14px 0;
+  }
+  .message-form{display:flex; flex-direction:column; gap:10px;}
+  .message-form input,
+  .message-form textarea{
+    width:100%;
+    font-family:'Inter', sans-serif;
+    font-size:.8rem;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--rule);
+    padding:9px 10px;
+    resize:none;
+    outline:none;
+    transition:border-color .15s ease;
+  }
+  .message-form input:focus,
+  .message-form textarea:focus{border-color:var(--leader-red);}
+  .message-form textarea{min-height:74px; line-height:1.4;}
+  .message-form button{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.68rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--paper);
+    background:var(--ink);
+    border:none;
+    padding:10px 14px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .message-form button:hover{background:var(--leader-red);}
+  .message-form button:disabled{opacity:.55; cursor:default;}
+  .message-status{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.66rem;
+    letter-spacing:.03em;
+    margin-top:2px;
+    min-height:14px;
+  }
+  .message-status.ok{color:var(--sage);}
+  .message-status.err{color:var(--leader-red);}
+
   /* ---------- center column ---------- */
   .main{
     padding:56px 46px 70px 46px;
@@ -505,6 +559,18 @@
           <li><a href="#social">Social Media Mgmt. <span class="count">01</span></a></li>
         </ul>
       </div>
+
+      <div class="message-panel">
+        <div class="section-label">Send a Message</div>
+        <p>Drop a quick note — it'll land straight in my inbox.</p>
+        <form class="message-form" id="messageForm">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <textarea name="message" placeholder="Message" required></textarea>
+          <button type="submit">Send →</button>
+          <div class="message-status" id="messageStatus"></div>
+        </form>
+      </div>
     </aside>
 
     <!-- ============ MAIN ============ -->
@@ -759,6 +825,44 @@
     </aside>
 
   </div>
+
+<script>
+  (function(){
+    const form = document.getElementById('messageForm');
+    const status = document.getElementById('messageStatus');
+    if(!form) return;
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim()
+      };
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      status.textContent = '';
+      status.className = 'message-status';
+      try{
+        const res = await fetch('/api/send-message', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+        if(!res.ok) throw new Error('Request failed');
+        status.textContent = 'Sent — thank you!';
+        status.className = 'message-status ok';
+        form.reset();
+      }catch(err){
+        status.textContent = 'Something went wrong. Please try again.';
+        status.className = 'message-status err';
+      }finally{
+        btn.disabled = false;
+        btn.textContent = 'Send →';
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
