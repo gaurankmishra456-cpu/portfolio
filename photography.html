@@ -24,14 +24,16 @@
   <main class="page">
     <header class="topbar"><a class="brand" href="index.html">Gaurank Mishra</a><a class="back" href="index.html#blog">← Back to portfolio</a></header>
     <section class="intro" aria-labelledby="page-title"><div><div class="eyebrow">A visual journal</div><h1 id="page-title">Photography</h1></div><p>Small moments, held a little longer. A growing collection of frames from the road, the room, and everything in between.</p></section>
-    <section class="gallery" id="gallery" aria-label="Photography gallery"><div class="empty"><div><strong>New frames coming soon.</strong><span>Upload photographs to GitHub, then add them to <code>photography/gallery.json</code>.</span></div></div></section>
+    <section class="gallery" id="gallery" aria-label="Photography gallery"><div class="empty"><div><strong>New frames coming soon.</strong><span>Upload photographs directly to the <code>photography</code> folder on GitHub.</span></div></div></section>
     <footer><span>© 2026 Gaurank Mishra</span><span id="photo-count">00 frames</span></footer>
   </main>
   <script>
     const gallery = document.getElementById('gallery');
     const photoCount = document.getElementById('photo-count');
-    fetch('photography/gallery.json').then(response => { if (!response.ok) throw new Error('Gallery unavailable'); return response.json(); }).then(data => {
-      const photos = Array.isArray(data.photos) ? data.photos : [];
+    const repository = 'gaurankmishra456-cpu/portfolio';
+    const folder = 'photography';
+    fetch(`https://api.github.com/repos/${repository}/contents/${folder}?ref=main`).then(response => { if (!response.ok) throw new Error('Gallery unavailable'); return response.json(); }).then(files => {
+      const photos = files.filter(file => file.type === 'file' && /\.(avif|gif|jpe?g|png|webp)$/i.test(file.name)).map(file => ({ src: file.download_url, alt: file.name.replace(/[-_]/g, ' ').replace(/\.[^.]+$/, ''), caption: '' }));
       if (!photos.length) return;
       gallery.innerHTML = photos.map((photo, index) => `<figure class="photo"><img src="${photo.src}" alt="${photo.alt || ''}" loading="${index < 3 ? 'eager' : 'lazy'}"><figcaption class="caption">${photo.caption || ''}</figcaption></figure>`).join('');
       photoCount.textContent = String(photos.length).padStart(2, '0') + (photos.length === 1 ? ' frame' : ' frames');
