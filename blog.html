@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Writing by Gaurank Mishra">
+  <title>Blog Posts — Gaurank Mishra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#f5f3ee;--paper-dark:#eae6dc;--ink:#16160f;--ink-soft:#4a4a3f;--ink-faint:#8a8a78;--red:#9a2b1e;--rule:#d8d3c4}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 Inter,sans-serif}a{color:inherit;text-decoration:none}.page{max-width:1100px;margin:auto;padding:28px 42px 70px}.top{display:flex;align-items:center;justify-content:space-between;padding-bottom:22px;border-bottom:1px solid var(--rule)}.brand{font:500 1.25rem Fraunces,serif}.back{font:.68rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}.back:hover,.read:hover{color:var(--red)}.intro{padding:78px 0 48px}.eyebrow,.date{font:.68rem 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}h1{font:500 clamp(3.2rem,8vw,7.5rem)/.85 Fraunces,serif;letter-spacing:-.06em;margin:16px 0 20px}.intro p{max-width:460px;color:var(--ink-soft);margin:0}.posts{border-top:1px solid var(--rule)}.post{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:25px 0;border-bottom:1px solid var(--rule)}.image{height:120px;background:var(--paper-dark);overflow:hidden}.image img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.03)}h2{font:500 clamp(1.4rem,3vw,2rem)/1.05 Fraunces,serif;margin:6px 0 9px}.excerpt{color:var(--ink-soft);font-size:.9rem;max-width:610px;margin:0 0 12px}.read{font:.68rem 'JetBrains Mono',monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint)}.status{padding:48px 0;color:var(--ink-faint);font:italic 1.15rem Fraunces,serif}.status.error{color:var(--red)}footer{padding-top:18px;color:var(--ink-faint);font:.65rem 'JetBrains Mono',monospace;letter-spacing:.04em}@media(max-width:600px){.page{padding:22px 20px 50px}.intro{padding:58px 0 36px}.post{grid-template-columns:1fr;gap:14px}.image{height:190px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="top"><a class="brand" href="index.html">Gaurank Mishra</a><a class="back" href="index.html">← Back to portfolio</a></header>
+    <section class="intro"><div class="eyebrow">Thehraav…ठहराव</div><h1>Blog Posts</h1><p>Essays, poems, and passing observations. Select an entry to read the full piece on WordPress.</p></section>
+    <section class="posts" id="posts" aria-label="Blog posts"><p class="status">Gathering the latest writing…</p></section>
+    <footer>© 2026 Gaurank Mishra</footer>
+  </main>
+  <script>
+    const posts = document.getElementById('posts');
+    const decode = html => { const node = document.createElement('textarea'); node.innerHTML = html; return node.value; };
+    fetch('https://public-api.wordpress.com/rest/v1.1/sites/intotheunknownwithgaurankmishra.wordpress.com/posts/?number=100')
+      .then(response => { if (!response.ok) throw new Error('Unable to load posts'); return response.json(); })
+      .then(data => {
+        const entries = data.posts || [];
+        if (!entries.length) throw new Error('No posts found');
+        posts.innerHTML = entries.map(post => {
+          const image = post.featured_image ? `<div class="image"><img src="${post.featured_image}" alt="" loading="lazy"></div>` : '<div class="image"></div>';
+          const excerpt = decode(post.excerpt || '').replace(/<[^>]*>/g, '').trim();
+          const date = new Date(post.date).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+          return `<article class="post">${image}<div><div class="date">${date}</div><h2><a href="${post.URL}" target="_blank" rel="noopener">${decode(post.title)}</a></h2><p class="excerpt">${excerpt}</p><a class="read" href="${post.URL}" target="_blank" rel="noopener">Read on WordPress ↗</a></div></article>`;
+        }).join('');
+      })
+      .catch(() => { posts.innerHTML = '<p class="status error">The blog could not load right now. Please try again shortly.</p>'; });
+  </script>
+</body>
+</html>
