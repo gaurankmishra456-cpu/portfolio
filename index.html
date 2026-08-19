@@ -445,6 +445,8 @@
   body.section-page .page{display:block;max-width:1000px;}
   body.section-page .main{padding:52px 42px 70px;border:none;}
   body.section-page section.work-section{margin-bottom:0;}
+  /* The home page ends after the featured film; sections are opened from the sidebar. */
+  body:not(.section-page) section.work-section{display:none !important;}
 
   .work-item{
     display:grid;
