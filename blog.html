@@ -27,7 +27,9 @@
         const entries = data.posts || [];
         if (!entries.length) throw new Error('No posts found');
         posts.innerHTML = entries.map(post => {
-          const image = post.featured_image ? `<div class="image"><img src="${post.featured_image}" alt="" loading="lazy"></div>` : '<div class="image"></div>';
+          const embeddedImage = (post.content || '').match(/<img[^>]+src=["']([^"']+)["']/i);
+          const imageUrl = post.featured_image || (embeddedImage && embeddedImage[1]);
+          const image = imageUrl ? `<div class="image"><img src="${imageUrl}" alt="" loading="lazy"></div>` : '<div class="image"></div>';
           const excerpt = decode(post.excerpt || '').replace(/<[^>]*>/g, '').trim();
           const date = new Date(post.date).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
           return `<article class="post">${image}<div><div class="date">${date}</div><h2><a href="${post.URL}" target="_blank" rel="noopener">${decode(post.title)}</a></h2><p class="excerpt">${excerpt}</p><a class="read" href="${post.URL}" target="_blank" rel="noopener">Read on WordPress ↗</a></div></article>`;
