@@ -132,6 +132,39 @@
     font-size:.68rem;
     color:var(--ink-faint);
   }
+  .nav-list button{
+    all:unset;
+    cursor:pointer;
+    font-family:'Fraunces', serif;
+    font-size:.98rem;
+    color:var(--ink);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    border-bottom:1px dashed transparent;
+    transition:color .15s ease, padding-left .15s ease;
+  }
+  .nav-list button:hover{color:var(--leader-red); padding-left:4px;}
+  .nav-list li.active button{color:var(--leader-red);}
+  .nav-list li.active button::before{
+    content:"▸";
+    margin-right:6px;
+    font-family:'JetBrains Mono', monospace;
+  }
+
+  .work-section{display:none;}
+  .work-section.active{display:block;}
+
+  .empty-note{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--ink-faint);
+    padding:24px 0;
+  }
+
 
   /* ---------- message box ---------- */
   .message-panel{
@@ -572,11 +605,13 @@
       <div class="section-block">
         <div class="section-label">Browse the Reel</div>
         <ul class="nav-list">
-          <li><a href="#social-impact">Social Impact Films <span class="count">08</span></a></li>
-          <li><a href="#independent">Independent Films <span class="count">02</span></a></li>
-          <li><a href="#podcast">Podcast <span class="count">01</span></a></li>
-          <li><a href="#press">Press &amp; Features <span class="count">01</span></a></li>
-          <li><a href="#social">Social Media Mgmt. <span class="count">01</span></a></li>
+          <li class="active" data-tab-nav="social-impact"><a href="#social-impact" target="_blank" rel="noopener">Social Impact Films <span class="count">08</span></a></li>
+          <li data-tab-nav="independent"><a href="#independent" target="_blank" rel="noopener">Independent Films <span class="count">02</span></a></li>
+          <li data-tab-nav="podcast"><a href="#podcast" target="_blank" rel="noopener">Podcast <span class="count">01</span></a></li>
+          <li data-tab-nav="press"><a href="#press" target="_blank" rel="noopener">Press &amp; Features <span class="count">01</span></a></li>
+          <li data-tab-nav="social"><a href="#social" target="_blank" rel="noopener">Social Media <span class="count">01</span></a></li>
+          <li data-tab-nav="blog"><a href="#blog" target="_blank" rel="noopener">Blog Posts <span class="count">09</span></a></li>
+          <li><a href="photography.html">Photography <span class="count">00</span></a></li>
         </ul>
       </div>
 
@@ -629,7 +664,7 @@
       <p class="lede"><span class="kicker">I make films about people, places, memory and the worlds they carry within them.</span></p>
 
       <!-- SOCIAL IMPACT FILMS -->
-      <section class="work-section" id="social-impact">
+      <section class="work-section active" id="social-impact">
         <div class="divider-strip">
           <div class="holes"><span></span><span></span><span></span></div>
           <small>Social Impact Films</small>
@@ -784,7 +819,7 @@
       <section class="work-section" id="social">
         <div class="divider-strip">
           <div class="holes"><span></span><span></span><span></span></div>
-          <small>Social Media Management</small>
+          <small>Social Media</small>
         </div>
 
         <div class="work-item">
@@ -794,6 +829,104 @@
             <h3><a href="https://www.instagram.com/studiovastuinteriors/" target="_blank" rel="noopener">Studio Vāstu Interiors — Instagram</a></h3>
             <p>Content creator and Social Media Manager for Studio Vāstu's Instagram presence.</p>
             <span class="url"><a href="https://www.instagram.com/studiovastuinteriors/" target="_blank" rel="noopener">instagram.com/studiovastuinteriors</a></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOG POSTS -->
+      <section class="work-section" id="blog">
+        <div class="divider-strip">
+          <div class="holes"><span></span><span></span><span></span></div>
+          <small>Blog Posts</small>
+        </div>
+
+        <div class="work-item">
+          <span class="mark">▸</span>
+          <div class="thumb"><img src="https://intotheunknownwithgaurankmishra.wordpress.com/wp-content/uploads/2025/04/img_7490-1.jpg?w=682" alt="" loading="lazy"></div>
+          <div>
+            <h3><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2025/04/23/the-meadows/" target="_blank" rel="noopener">The Meadows</a></h3>
+            <p>A quiet elegy for Pahalgam — deserted meadows, faded wildflowers, and the ache of things that flew away and never returned.</p>
+            <span class="url"><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2025/04/23/the-meadows/" target="_blank" rel="noopener">Thehraav…ठहराव — April 23, 2025</a></span>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <span class="mark">▸</span>
+          <div class="thumb"><img src="https://intotheunknownwithgaurankmishra.wordpress.com/wp-content/uploads/2025/04/pexels-photo-1715091.jpg?w=1024" alt="" loading="lazy"></div>
+          <div>
+            <h3><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2025/04/02/not-a-day-goes-by/" target="_blank" rel="noopener">Not a Day Goes By…</a></h3>
+            <p>A poem of longing — a smile missed, old days remembered, and a heart that won't let go.</p>
+            <span class="url"><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2025/04/02/not-a-day-goes-by/" target="_blank" rel="noopener">Thehraav…ठहराव — April 2, 2025</a></span>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <span class="mark">▸</span>
+          <div class="thumb empty">↗</div>
+          <div>
+            <h3><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/%e0%a4%b9%e0%a5%88%e0%a4%b0%e0%a4%be%e0%a4%a8/" target="_blank" rel="noopener">हैरान</a></h3>
+            <p>A short Hindi poem on sudden, unexplained restlessness of the heart.</p>
+            <span class="url"><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/%e0%a4%b9%e0%a5%88%e0%a4%b0%e0%a4%be%e0%a4%a8/" target="_blank" rel="noopener">Thehraav…ठहराव — June 13, 2018</a></span>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <span class="mark">▸</span>
+          <div class="thumb empty">↗</div>
+          <div>
+            <h3><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/%e0%a4%9c%e0%a4%bf%e0%a4%82%e0%a4%a6%e0%a4%97%e0%a5%80/" target="_blank" rel="noopener">जिंदगी</a></h3>
+            <p>A Hindi poem reflecting on life as a bittersweet plaything, swinging between laughter and tears.</p>
+            <span class="url"><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/%e0%a4%9c%e0%a4%bf%e0%a4%82%e0%a4%a6%e0%a4%97%e0%a5%80/" target="_blank" rel="noopener">Thehraav…ठहराव — June 13, 2018</a></span>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <span class="mark">▸</span>
+          <div class="thumb empty">↗</div>
+          <div>
+            <h3><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/broken-wings/" target="_blank" rel="noopener">Broken Wings</a></h3>
+            <p>A poem about watching a bird take flight, and feeling grounded while wishing for wings of one's own.</p>
+            <span class="url"><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/broken-wings/" target="_blank" rel="noopener">Thehraav…ठहराव — June 13, 2018</a></span>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <span class="mark">▸</span>
+          <div class="thumb empty">↗</div>
+          <div>
+            <h3><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/stars-and-moon/" target="_blank" rel="noopener">Universe</a></h3>
+            <p>A short poem on childhood wonder and the enduring mystery of our place in the cosmos.</p>
+            <span class="url"><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/stars-and-moon/" target="_blank" rel="noopener">Thehraav…ठहराव — June 13, 2018</a></span>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <span class="mark">▸</span>
+          <div class="thumb empty">↗</div>
+          <div>
+            <h3><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/%e0%a4%ae%e0%a4%be%e0%a4%b8%e0%a5%82%e0%a4%ae-%e0%a4%87%e0%a4%b6%e0%a5%8d%e0%a5%98/" target="_blank" rel="noopener">मासूम इश्क़</a></h3>
+            <p>A nostalgic Hindi poem remembering the innocence of early love, before the world got in the way.</p>
+            <span class="url"><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/06/13/%e0%a4%ae%e0%a4%be%e0%a4%b8%e0%a5%82%e0%a4%ae-%e0%a4%87%e0%a4%b6%e0%a5%8d%e0%a5%98/" target="_blank" rel="noopener">Thehraav…ठहराव — June 13, 2018</a></span>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <span class="mark">▸</span>
+          <div class="thumb empty">↗</div>
+          <div>
+            <h3><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/05/05/38/" target="_blank" rel="noopener">रात</a></h3>
+            <p>A Hindi poem on a hard night on the street, and the quiet resolve to face another day's struggle.</p>
+            <span class="url"><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/05/05/38/" target="_blank" rel="noopener">Thehraav…ठहराव — May 5, 2018</a></span>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <span class="mark">▸</span>
+          <div class="thumb empty">↗</div>
+          <div>
+            <h3><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/04/25/cave-2/" target="_blank" rel="noopener">Cave</a></h3>
+            <p>A meditation on choosing between two songs, happy and sad, echoing inside a metaphorical cave.</p>
+            <span class="url"><a href="https://intotheunknownwithgaurankmishra.wordpress.com/2018/04/25/cave-2/" target="_blank" rel="noopener">Thehraav…ठहराव — April 25, 2018</a></span>
           </div>
         </div>
       </section>
@@ -845,6 +978,31 @@
     </aside>
 
   </div>
+
+<script>
+  function showTab(tabId){
+    document.querySelectorAll('.work-section').forEach(function(sec){
+      sec.classList.toggle('active', sec.id === tabId);
+    });
+    document.querySelectorAll('.nav-list li[data-tab-nav]').forEach(function(li){
+      li.classList.toggle('active', li.getAttribute('data-tab-nav') === tabId);
+    });
+    const main = document.querySelector('main.main');
+    if(main) main.scrollTop = 0;
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // When a section link opens in a new tab, show the matching section
+  // instead of always defaulting to the first one.
+  function applyTabFromHash(){
+    const tabId = window.location.hash.replace('#', '');
+    if(tabId && document.getElementById(tabId)){
+      showTab(tabId);
+    }
+  }
+  window.addEventListener('DOMContentLoaded', applyTabFromHash);
+  window.addEventListener('hashchange', applyTabFromHash);
+</script>
 
 <script>
   (function(){

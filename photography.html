@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photography by Gaurank Mishra">
+  <title>Photography — Gaurank Mishra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#f5f3ee;--paper-dark:#eae6dc;--ink:#16160f;--ink-soft:#4a4a3f;--ink-faint:#8a8a78;--red:#9a2b1e;--rule:#d8d3c4;}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 Inter,sans-serif}
+    a{color:inherit;text-decoration:none}.page{width:min(1440px,100%);margin:auto;padding:28px 42px 70px}.topbar{display:flex;justify-content:space-between;align-items:center;padding:0 0 28px;border-bottom:1px solid var(--rule)}
+    .brand{font:500 1.25rem Fraunces,serif}.back{font:500 .7rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);transition:color .15s}.back:hover{color:var(--red)}
+    .intro{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(220px,.75fr);gap:40px;padding:90px 0 60px;align-items:end}.eyebrow,.meta{font:.68rem 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+    h1{font:500 clamp(3.2rem,9vw,8.2rem)/.84 Fraunces,serif;letter-spacing:-.065em;margin:16px 0 0}.intro p{max-width:360px;margin:0;color:var(--ink-soft);font-size:.92rem}.intro p::before{content:"";display:block;width:32px;height:1px;background:var(--red);margin-bottom:18px}
+    .gallery{columns:3 260px;column-gap:15px}.photo{position:relative;display:block;break-inside:avoid;margin:0 0 15px;background:var(--paper-dark);overflow:hidden;min-height:240px}.photo img{width:100%;display:block;object-fit:cover;transition:transform .6s cubic-bezier(.2,.65,.3,1),filter .4s;filter:saturate(.9) contrast(1.03)}.photo:hover img{transform:scale(1.035);filter:saturate(1.05) contrast(1.06)}
+    .caption{position:absolute;inset:auto 0 0;padding:32px 16px 14px;color:var(--paper);font:.67rem 'JetBrains Mono',monospace;letter-spacing:.06em;background:linear-gradient(transparent,rgba(0,0,0,.72));opacity:0;transform:translateY(8px);transition:.25s}.photo:hover .caption{opacity:1;transform:none}
+    .empty{column-span:all;display:flex;min-height:380px;align-items:center;justify-content:center;padding:36px;border:1px dashed var(--rule);background:linear-gradient(135deg,transparent 25%,rgba(216,211,196,.32) 25%,rgba(216,211,196,.32) 50%,transparent 50%,transparent 75%,rgba(216,211,196,.32) 75%);background-size:18px 18px;text-align:center}.empty div{background:var(--paper);padding:24px 28px;box-shadow:0 6px 24px rgba(22,22,15,.06)}.empty strong{font:500 1.2rem Fraunces,serif;display:block;margin-bottom:6px}.empty span{color:var(--ink-faint);font-size:.78rem}
+    footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--rule);margin-top:65px;padding-top:16px;color:var(--ink-faint);font:.65rem 'JetBrains Mono',monospace;letter-spacing:.04em}@media(max-width:620px){.page{padding:22px 20px 50px}.intro{display:block;padding:60px 0 38px}.intro p{margin-top:30px}h1{font-size:4rem}.gallery{columns:1}.topbar{padding-bottom:20px}footer{display:block}footer span+span{display:block;margin-top:4px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar"><a class="brand" href="index.html">Gaurank Mishra</a><a class="back" href="index.html#blog">← Back to portfolio</a></header>
+    <section class="intro" aria-labelledby="page-title"><div><div class="eyebrow">A visual journal</div><h1 id="page-title">Photography</h1></div><p>Small moments, held a little longer. A growing collection of frames from the road, the room, and everything in between.</p></section>
+    <section class="gallery" id="gallery" aria-label="Photography gallery"><div class="empty"><div><strong>New frames coming soon.</strong><span>Upload photographs to GitHub, then add them to <code>photography/gallery.json</code>.</span></div></div></section>
+    <footer><span>© 2026 Gaurank Mishra</span><span id="photo-count">00 frames</span></footer>
+  </main>
+  <script>
+    const gallery = document.getElementById('gallery');
+    const photoCount = document.getElementById('photo-count');
+    fetch('photography/gallery.json').then(response => { if (!response.ok) throw new Error('Gallery unavailable'); return response.json(); }).then(data => {
+      const photos = Array.isArray(data.photos) ? data.photos : [];
+      if (!photos.length) return;
+      gallery.innerHTML = photos.map((photo, index) => `<figure class="photo"><img src="${photo.src}" alt="${photo.alt || ''}" loading="${index < 3 ? 'eager' : 'lazy'}"><figcaption class="caption">${photo.caption || ''}</figcaption></figure>`).join('');
+      photoCount.textContent = String(photos.length).padStart(2, '0') + (photos.length === 1 ? ' frame' : ' frames');
+    }).catch(() => {});
+  </script>
+</body>
+</html>
