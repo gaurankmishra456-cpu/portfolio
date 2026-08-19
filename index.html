@@ -155,7 +155,11 @@
   }
 
   .work-section{display:none;}
-  .work-section.active{display:block;}
+  .work-section.active{display:block;animation:section-reveal .38s cubic-bezier(.22,.8,.28,1) both;}
+  @keyframes section-reveal{
+    from{opacity:0;transform:translateY(10px);}
+    to{opacity:1;transform:translateY(0);}
+  }
 
   .empty-note{
     font-family:'Fraunces', serif;
@@ -610,6 +614,10 @@
     body.section-page .section-return{padding:22px 20px 18px;}
     body.section-page .main{padding:38px 20px 50px;}
   }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .work-section.active{animation:none;}
+  }
 </style>
 </head>
 <body>
@@ -1016,7 +1024,7 @@
     });
     const main = document.querySelector('main.main');
     if(main) main.scrollTop = 0;
-    window.scrollTo({top:0, behavior:'smooth'});
+    window.scrollTo({top:0, behavior:'auto'});
   }
 
   // When a section link opens in a new tab, show the matching section
