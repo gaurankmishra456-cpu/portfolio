@@ -421,6 +421,24 @@
     scroll-margin-top:40px;
   }
 
+  /* ---------- instagram embed grid ---------- */
+  .ig-intro{
+    font-size:.9rem;
+    color:var(--ink-soft);
+    max-width:640px;
+    margin:0 0 28px 0;
+    line-height:1.65;
+  }
+  .ig-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:24px;
+  }
+  .ig-grid .instagram-media{
+    margin:0 !important;
+    width:100% !important;
+  }
+
   /* ---------- focused section pages ---------- */
   .section-return{display:none;}
   body.section-page .site-logo-wrap,
@@ -860,14 +878,19 @@
           <small>Social Media</small>
         </div>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb empty">↗</div>
-          <div>
-            <h3><a href="https://www.instagram.com/studiovastuinteriors/" target="_blank" rel="noopener">Studio Vāstu Interiors — Instagram</a></h3>
-            <p>Content creator and Social Media Manager for Studio Vāstu's Instagram presence.</p>
-            <span class="url"><a href="https://www.instagram.com/studiovastuinteriors/" target="_blank" rel="noopener">instagram.com/studiovastuinteriors</a></span>
-          </div>
+        <p class="ig-intro">Content creator and Social Media Manager for <a href="https://www.instagram.com/studiovastuinteriors/" target="_blank" rel="noopener">Studio Vāstu Interiors</a> — captions and content written to bring in real client inquiries, not just views.</p>
+
+        <div class="ig-grid">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DcRSMycPvDX/" data-instgrm-version="14"></blockquote>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbWBluiPJ1k/" data-instgrm-version="14"></blockquote>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Dblf28vvjPu/" data-instgrm-version="14"></blockquote>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbD_l2jPbk1/" data-instgrm-version="14"></blockquote>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Da0kY0NSggu/" data-instgrm-version="14"></blockquote>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DaN4KomPUQz/" data-instgrm-version="14"></blockquote>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DZIZsI_varD/" data-instgrm-version="14"></blockquote>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYNHYpej1aH/" data-instgrm-version="14"></blockquote>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DX9sIzLj1E6/" data-instgrm-version="14"></blockquote>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXpEfhjj-MB/" data-instgrm-version="14"></blockquote>
         </div>
       </section>
 
@@ -1028,6 +1051,11 @@
     const main = document.querySelector('main.main');
     if(main) main.scrollTop = 0;
     window.scrollTo({top:0, behavior:'auto'});
+    // Re-render Instagram embeds whenever the Social tab becomes visible,
+    // since they can't size themselves correctly while display:none.
+    if(tabId === 'social' && window.instgrm && window.instgrm.Embeds){
+      window.instgrm.Embeds.process();
+    }
   }
 
   // When a section link opens in a new tab, show the matching section
@@ -1086,6 +1114,8 @@
     });
   })();
 </script>
+
+<script async src="https://www.instagram.com/embed.js"></script>
 
 </body>
 </html>
