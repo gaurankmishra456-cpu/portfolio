@@ -796,6 +796,55 @@
 }
 </style>
 
+
+<style id="mobile-preview-fix">
+@media (max-width:850px){
+  .film-grid,
+  .brand-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media (max-width:520px){
+  .film-grid,
+  .brand-grid{
+    grid-template-columns:1fr;
+  }
+
+  .film-thumb{
+    width:100%;
+    aspect-ratio:16/9;
+  }
+
+  .brand-thumb{
+    width:100%;
+    aspect-ratio:9/16;
+  }
+
+  /* Prevent the mobile browser from treating the preview as a normal
+     navigational image/video gesture. */
+  .film-thumb,
+  .brand-thumb{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+}
+</style>
+
+
+<style id="mobile-autoplay-fix">
+@media (max-width:850px){
+  .film-thumb .hover-player,
+  .brand-thumb video{
+    pointer-events:none;
+  }
+  .film-thumb,
+  .brand-thumb{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:pan-y;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="site-logo-wrap">
@@ -1197,63 +1246,91 @@
   })();
 </script>
 
+
+
+
+
+
+
 <script id="corrected-video-hover">
 (function(){
-  /* YouTube film previews: play only while hovering, muted and without controls. */
+  var touchDevice = window.matchMedia('(hover:none), (pointer:coarse)').matches;
+
   document.querySelectorAll('.film-thumb[data-youtube-id]').forEach(function(thumb){
     var player = null;
-    var timer = null;
-    var desktop = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
     function start(){
-      if(!desktop || player) return;
+      if(player) return;
       var id = thumb.getAttribute('data-youtube-id');
+      if(!id) return;
+
       player = document.createElement('iframe');
       player.className = 'hover-player';
       player.src =
         'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
         '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + encodeURIComponent(id) +
-        '&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3';
+        '&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1';
       player.title = 'Video preview';
-      player.setAttribute('allow','autoplay; encrypted-media');
+      player.setAttribute('allow','autoplay; encrypted-media; picture-in-picture');
       player.setAttribute('frameborder','0');
       player.setAttribute('aria-hidden','true');
       thumb.appendChild(player);
     }
 
     function stop(){
-      if(timer) clearTimeout(timer);
-      timer = null;
       if(player){
         player.remove();
         player = null;
       }
     }
 
-    thumb.addEventListener('mouseenter',function(){
-      timer = setTimeout(start,100);
-    });
-    thumb.addEventListener('mouseleave',stop);
+    if(!touchDevice){
+      thumb.addEventListener('mouseenter', start);
+      thumb.addEventListener('mouseleave', stop);
+    } else {
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting && entry.intersectionRatio >= 0.55){
+            start();
+          } else {
+            stop();
+          }
+        });
+      }, {threshold:[0,0.55,0.8]});
+
+      observer.observe(thumb);
+    }
   });
 
-  /* Brand Work reels: show first frame, play muted on hover, stop on leave. */
-  document.querySelectorAll('#social .brand-thumb').forEach(function(link){
-    var video = link.querySelector('video');
-    if(!video) return;
-
-    link.addEventListener('mouseenter',function(){
+  document.querySelectorAll('#social .brand-thumb video').forEach(function(video){
+    function play(){
       video.muted = true;
+      video.setAttribute('muted','');
+      video.setAttribute('playsinline','');
       video.play().catch(function(){});
-    });
+    }
 
-    link.addEventListener('mouseleave',function(){
+    function stop(){
       video.pause();
       video.currentTime = 0;
-    });
+    }
 
-    link.addEventListener('click',function(e){
-      e.preventDefault();
-    });
+    if(!touchDevice){
+      video.closest('.brand-thumb').addEventListener('mouseenter', play);
+      video.closest('.brand-thumb').addEventListener('mouseleave', stop);
+    } else {
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting && entry.intersectionRatio >= 0.45){
+            play();
+          } else {
+            stop();
+          }
+        });
+      }, {threshold:[0,0.45,0.75]});
+
+      observer.observe(video);
+    }
   });
 })();
 </script>
