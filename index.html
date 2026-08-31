@@ -1110,6 +1110,89 @@ a{
 }
 </style>
 
+
+<style id="brand-work-mobile-only">
+@media (max-width:850px){
+  #social .brand-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:24px 14px;
+  }
+
+  #social .brand-thumb{
+    width:100%;
+    aspect-ratio:9/16;
+    overflow:hidden;
+    background:#000;
+  }
+
+  #social .brand-thumb video{
+    width:100%;
+    height:100%;
+    aspect-ratio:9/16;
+    object-fit:cover;
+    display:block;
+    background:#000;
+    pointer-events:none;
+  }
+}
+
+@media (max-width:520px){
+  #social .brand-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:24px 12px;
+  }
+
+  #social .brand-thumb{
+    aspect-ratio:9/16;
+  }
+}
+</style>
+
+
+<style id="brand-work-mobile-one-at-a-time">
+@media (max-width:850px){
+  #social .brand-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:38px;
+    width:100%;
+  }
+
+  #social .brand-card{
+    width:100%;
+    min-width:0;
+  }
+
+  #social .brand-thumb{
+    width:100%;
+    max-width:none;
+    aspect-ratio:9/16;
+    height:auto;
+    overflow:hidden;
+  }
+
+  #social .brand-thumb video{
+    width:100%;
+    height:100%;
+    aspect-ratio:9/16;
+    object-fit:cover;
+    display:block;
+  }
+}
+
+@media (max-width:520px){
+  #social .brand-grid{
+    grid-template-columns:1fr;
+    gap:42px;
+  }
+
+  #social .brand-thumb{
+    width:100%;
+    aspect-ratio:9/16;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="site-logo-wrap">
@@ -1486,10 +1569,15 @@ a{
     });
   })();
 </script>
+
+
 <script id="corrected-video-hover">
 (function(){
   var touchDevice = window.matchMedia('(hover:none), (pointer:coarse)').matches;
 
+  /* Social Impact + Independent:
+     KEEP existing desktop hover behavior.
+     Mobile behavior is untouched here except for automatic muted playback. */
   document.querySelectorAll('.film-thumb[data-youtube-id]').forEach(function(thumb){
     var player = null;
 
@@ -1524,49 +1612,109 @@ a{
     } else {
       var observer = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
-          if(entry.isIntersecting && entry.intersectionRatio >= 0.55){
+          if(entry.isIntersecting && entry.intersectionRatio >= 0.35){
             start();
           } else {
             stop();
           }
         });
-      }, {threshold:[0,0.55,0.8]});
-
+      }, {threshold:[0,0.35,0.6]});
       observer.observe(thumb);
     }
   });
 
-  document.querySelectorAll('#social .brand-thumb video').forEach(function(video){
-    function play(){
+  /* BRAND WORK — MOBILE ONLY
+     The source reels are 1080x1920, so they stay vertical 9:16.
+     There is no real hover state on a phone. Instead, the reel starts
+     automatically as it enters the viewport, muted, with no tap required. */
+  var brandVideos = document.querySelectorAll('#social .brand-thumb video');
+
+  brandVideos.forEach(function(video){
+    video.muted = true;
+    video.defaultMuted = true;
+    video.autoplay = false;
+    video.setAttribute('muted','');
+    video.setAttribute('playsinline','');
+    video.setAttribute('webkit-playsinline','');
+    video.setAttribute('preload','auto');
+
+    var card = video.closest('.brand-thumb');
+
+    function playMobile(){
+      if(!touchDevice) return;
       video.muted = true;
+      video.defaultMuted = true;
       video.setAttribute('muted','');
-      video.setAttribute('playsinline','');
       video.play().catch(function(){});
     }
 
-    function stop(){
+    function stopMobile(){
+      if(!touchDevice) return;
       video.pause();
       video.currentTime = 0;
     }
 
     if(!touchDevice){
-      video.closest('.brand-thumb').addEventListener('mouseenter', play);
-      video.closest('.brand-thumb').addEventListener('mouseleave', stop);
+      /* Desktop stays exactly hover-to-play. */
+      card.addEventListener('mouseenter',function(){
+        video.muted = true;
+        video.play().catch(function(){});
+      });
+      card.addEventListener('mouseleave',function(){
+        video.pause();
+        video.currentTime = 0;
+      });
     } else {
-      var observer = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if(entry.isIntersecting && entry.intersectionRatio >= 0.45){
-            play();
-          } else {
-            stop();
-          }
-        });
-      }, {threshold:[0,0.45,0.75]});
+      /* Aggressive but safe mobile autoplay: IntersectionObserver plus
+         scroll/resize fallback, useful inside iOS/Instagram browsers. */
+      var visible = false;
 
-      observer.observe(video);
+      function check(){
+        var r = card.getBoundingClientRect();
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        var visibleHeight = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+        var ratio = visibleHeight / Math.max(r.height, 1);
+
+        if(ratio >= 0.25){
+          if(!visible){
+            visible = true;
+            playMobile();
+          }
+        } else if(visible){
+          visible = false;
+          stopMobile();
+        }
+      }
+
+      if('IntersectionObserver' in window){
+        var observer = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting && entry.intersectionRatio >= 0.25){
+              visible = true;
+              playMobile();
+            } else if(!entry.isIntersecting){
+              visible = false;
+              stopMobile();
+            }
+          });
+        }, {threshold:[0,0.25,0.5]});
+        observer.observe(card);
+      }
+
+      window.addEventListener('scroll',check,{passive:true});
+      window.addEventListener('resize',check);
+      window.addEventListener('orientationchange',function(){
+        setTimeout(check,250);
+      });
+
+      /* Kick-start the first visible reel after the page/section becomes visible. */
+      setTimeout(check,150);
+      setTimeout(check,600);
+      setTimeout(check,1500);
     }
   });
 })();
 </script>
+
 </body>
 </html>
