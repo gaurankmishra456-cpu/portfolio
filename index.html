@@ -670,7 +670,6 @@
     .work-section.active{animation:none;}
   }
 </style>
-
 <style id="corrected-video-layout">
 /* ===== CORRECTED FILM + BRAND WORK LAYOUT ===== */
 
@@ -795,8 +794,6 @@
   }
 }
 </style>
-
-
 <style id="mobile-preview-fix">
 @media (max-width:850px){
   .film-grid,
@@ -829,8 +826,6 @@
   }
 }
 </style>
-
-
 <style id="mobile-autoplay-fix">
 @media (max-width:850px){
   .film-thumb .hover-player,
@@ -845,6 +840,220 @@
 }
 </style>
 
+<style id="reference-home-layout">
+/* ===== HOME PAGE — reference layout ===== */
+.site-logo-wrap{
+  position:absolute;
+  top:28px;
+  left:0;
+  right:0;
+  z-index:10;
+  max-width:none;
+  margin:0;
+  padding:0;
+  pointer-events:none;
+}
+.site-logo-wrap img{
+  height:52px;
+  width:auto;
+  margin:0 auto;
+  display:block;
+}
+
+.page{
+  max-width:1400px;
+  margin:82px auto 0;
+  display:grid;
+  grid-template-columns:255px minmax(0,1fr) 340px;
+  gap:0;
+}
+
+.sidebar{
+  padding:8px 44px 40px 6px;
+  border-right:1px solid var(--rule);
+  position:sticky;
+  top:22px;
+  align-self:start;
+  max-height:calc(100vh - 22px);
+  overflow-y:auto;
+}
+.name{
+  font-size:2rem;
+  line-height:1.05;
+  margin:0 0 5px;
+}
+.role-tag{
+  margin-bottom:38px;
+}
+
+.section-block{
+  margin-bottom:0;
+}
+.section-block > .section-label{
+  font-size:.68rem;
+  letter-spacing:.12em;
+  color:var(--ink);
+  margin-bottom:27px;
+}
+.nav-list{
+  margin:0;
+}
+.nav-list li{
+  margin-bottom:14px;
+}
+.nav-list .nav-group-label{
+  margin:27px 0 15px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.63rem;
+  letter-spacing:.1em;
+  color:var(--ink);
+  text-transform:uppercase;
+}
+.nav-list .nav-group-label:first-child{
+  margin-top:0;
+}
+.nav-list a{
+  font-size:.98rem;
+  line-height:1.25;
+}
+.nav-break{
+  height:1px;
+  background:var(--rule);
+  margin:28px 0 18px !important;
+  list-style:none;
+}
+
+.main{
+  padding:46px 46px 70px;
+  border-right:1px solid var(--rule);
+}
+.hero{
+  margin-bottom:50px;
+}
+.hero-label{
+  margin-bottom:14px;
+}
+.hero-title{
+  font-size:2.55rem;
+  line-height:1.05;
+}
+.hero-desc{
+  max-width:620px;
+}
+.portrait-col{
+  padding:8px 36px 40px;
+  position:sticky;
+  top:22px;
+  align-self:start;
+  max-height:calc(100vh - 22px);
+  overflow-y:auto;
+}
+.portrait-svg-wrap{
+  width:100%;
+  aspect-ratio:3/4;
+}
+.portrait-caption{
+  margin-top:10px;
+}
+
+/* Keep the reference-style right column quieter and spacious. */
+.press-panel{
+  margin-top:48px;
+}
+.connect-panel{
+  margin-top:38px;
+}
+.connect-panel .section-label,
+.press-panel .section-label{
+  color:var(--ink);
+}
+
+/* Desktop film cards retain the established 3-column video-preview behavior. */
+.film-grid,
+.brand-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+/* Responsive layout */
+@media (max-width:1080px){
+  .site-logo-wrap{
+    position:relative;
+    top:auto;
+    padding:24px 0 0;
+  }
+  .page{
+    margin-top:0;
+    grid-template-columns:1fr;
+  }
+  .sidebar{
+    padding:30px 24px;
+  }
+  .main{
+    padding:42px 30px 60px;
+  }
+  .portrait-col{
+    padding:36px;
+  }
+}
+@media (max-width:600px){
+  .site-logo-wrap img{height:40px;}
+  .sidebar{padding:28px 20px;}
+  .main{padding:36px 20px 50px;}
+  .hero-title{font-size:1.8rem;}
+}
+</style>
+
+
+<style id="original-typography-restored">
+/* ORIGINAL TYPOGRAPHY — layout/interaction unchanged */
+:root{
+  --font-serif:'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --font-mono:'JetBrains Mono', "SFMono-Regular", Consolas, monospace;
+}
+
+body{
+  font-family:var(--font-sans);
+}
+
+h1,h2,h3,h4,h5,h6,
+.site-title,
+.hero-title,
+.work-item h3,
+.film-copy h3{
+  font-family:var(--font-serif);
+}
+
+nav,
+.nav-label,
+.section-label,
+.divider-strip small,
+.eyebrow,
+.meta,
+.url,
+.brand-caption,
+button,
+input,
+textarea,
+label{
+  font-family:var(--font-mono);
+}
+
+.brand-caption{
+  font-family:var(--font-mono);
+}
+
+.film-copy p,
+.work-item p,
+.ig-intro{
+  font-family:var(--font-sans);
+}
+
+a{
+  font-family:inherit;
+}
+</style>
+
 </head>
 <body>
 <div class="site-logo-wrap">
@@ -855,21 +1064,10 @@
 <aside class="sidebar">
 <h1 class="name">Gaurank Mishra</h1>
 <div class="role-tag">Filmmaker / Storyteller</div>
-<ul class="link-list">
-<li><a href="https://linktr.ee/gaurank_mishra" rel="noopener" target="_blank">↗ linktr.ee/gaurank_mishra</a></li>
-</ul>
+
 <div class="section-block">
-<div class="section-label">Browse the Reel</div>
-<ul class="nav-list">
-<li class="active" data-tab-nav="social-impact"><a href="index.html?section=social-impact">Social Impact Films <span class="count">08</span></a></li>
-<li data-tab-nav="independent"><a href="index.html?section=independent">Independent Films <span class="count">02</span></a></li>
-<li data-tab-nav="podcast"><a href="index.html?section=podcast">Podcast <span class="count">01</span></a></li>
-<li data-tab-nav="press"><a href="index.html?section=press">Press &amp; Features <span class="count">01</span></a></li>
-<li data-tab-nav="social"><a href="index.html?section=social">Brand Work <span class="count">06</span></a></li>
-<li data-tab-nav="blog"><a href="blog.html">Blog Posts <span class="count">↗</span></a></li>
-<li><a href="photography.html">Photography <span class="count">00</span></a></li>
-<li><a href="video-essays.html">Video Essays <span class="count">03</span></a></li>
-</ul>
+<div class="section-label">ARCHIVE</div>
+<ul class="nav-list"><li class="nav-group-label">FILMS</li><li data-tab-nav="social-impact"><a href="index.html?section=social-impact">Social Impact Films<span class="count">08</span></a></li><li data-tab-nav="independent"><a href="index.html?section=independent">Independent Films<span class="count">02</span></a></li><li aria-hidden="true" class="nav-break"></li><li data-tab-nav="social"><a href="index.html?section=social">Brand Work<span class="count">06</span></a></li><li class="nav-group-label">OTHER WORK</li><li data-tab-nav="video-essays"><a href="video-essays.html">Video Essays<span class="count">03</span></a></li><li data-tab-nav="podcast"><a href="index.html?section=podcast">Podcast<span class="count">01</span></a></li><li><a href="photography.html">Photography<span class="count">00</span></a></li><li class="nav-group-label">WRITING / MEDIA</li><li data-tab-nav="press"><a href="index.html?section=press">Press &amp; Features<span class="count">01</span></a></li><li data-tab-nav="blog"><a href="blog.html">Blog Posts<span class="count">↗</span></a></li></ul>
 </div>
 <div class="message-panel">
 <div class="section-label">Send a Message</div>
@@ -920,14 +1118,6 @@
 <div class="holes"><span></span><span></span><span></span></div>
 <small>Social Impact Films</small>
 </div>
-
-
-
-
-
-
-
-
 <div class="film-grid"><article class="film-card"><a class="film-thumb" data-youtube-id="eebzRypY8PE" href="https://youtu.be/eebzRypY8PE" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/eebzRypY8PE/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://youtu.be/eebzRypY8PE" rel="noopener" target="_blank">Mera Safar — Story of a Transwoman</a></h3><p>Part of the Mera Safar anthology on youth struggles and dreams. Follows Ayushi's journey of self-discovery and identity as a transwoman.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="8l6jlppAg4A" href="https://youtu.be/8l6jlppAg4A" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/8l6jlppAg4A/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://youtu.be/8l6jlppAg4A" rel="noopener" target="_blank">Mera Safar, Episode 2 — Ajay Ki Kahaani</a></h3><p>The second film in the Mera Safar series. Traces Ajay's story — a young boy fighting circumstance to chase his aspirations.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="AGcHdi3FG9E" href="https://www.youtube.com/watch?v=AGcHdi3FG9E" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/AGcHdi3FG9E/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=AGcHdi3FG9E" rel="noopener" target="_blank">Mera Safar, Episode 3 — Pooja Ki Kahani</a></h3><p>The third film in the Mera Safar series. Follows Pooja, a young girl navigating hardship in pursuit of her dreams.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="OuItSLYSt2w" href="https://www.youtube.com/watch?v=OuItSLYSt2w" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/OuItSLYSt2w/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=OuItSLYSt2w" rel="noopener" target="_blank">A Film on Tanda! — #RiseUp! Phase IV, YWCA</a></h3><p>A ground-level documentary from Tanda, made under YWCA's RiseUp! Phase IV programme. Captures grassroots voices and community change.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="BVKKjx0YhOs" href="https://www.youtube.com/watch?v=BVKKjx0YhOs" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/BVKKjx0YhOs/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=BVKKjx0YhOs" rel="noopener" target="_blank">RiseUp! Phase IV Implementation, Year 1 — Compilation Film</a></h3><p>A compilation documenting the first year of RiseUp! Phase IV on the ground. Brings together stories of impact across partner communities.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="Htc1P2mlIQU" href="https://www.youtube.com/watch?v=Htc1P2mlIQU" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/Htc1P2mlIQU/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=Htc1P2mlIQU" rel="noopener" target="_blank">Majhi Vasundhara — Building a Net-Zero Maharashtra</a></h3><p>Documents Maharashtra's Majhi Vasundhara Abhiyaan and its drive toward a net-zero future. Explores the state's climate role as an Under2 Coalition member.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="f6yAc2XvB_w" href="https://youtu.be/f6yAc2XvB_w" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/f6yAc2XvB_w/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://youtu.be/f6yAc2XvB_w" rel="noopener" target="_blank">Dastan-e-Parwaz</a></h3><p>A cinematic "tale of flight" — a documentary short exploring aspiration, ambition, and the journey of rising above circumstance.</p></div></article><article class="film-card"><a class="film-thumb film-thumb-empty" href="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/view" rel="noopener" target="_blank">↗</a><div class="film-copy"><h3><a href="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/view" rel="noopener" target="_blank">Film on 'Morena, Madhya Pradesh'</a></h3><p>A film on Morena district, showing its society, culture, and social impact.</p></div></article></div></section>
 <!-- INDEPENDENT FILMS -->
 <section class="work-section" id="independent">
@@ -992,8 +1182,6 @@
 <div class="holes"><span></span><span></span><span></span></div>
 <small>Brand Work</small>
 </div>
-
-
 <div class="brand-grid"><article class="brand-card"><a aria-label="Jhoola" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Jhoola.mp4"></video></a><div class="brand-caption">Jhoola</div></article><article class="brand-card"><a aria-label="Smitha 1" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Smitha%201.mp4"></video></a><div class="brand-caption">Smitha 1</div></article><article class="brand-card"><a aria-label="Smitha 2" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Smitha%202.mp4"></video></a><div class="brand-caption">Smitha 2</div></article><article class="brand-card"><a aria-label="Austin Home" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Austin%20home.mp4"></video></a><div class="brand-caption">Austin Home</div></article><article class="brand-card"><a aria-label="NYC Design" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/NYC%20Design1.mp4"></video></a><div class="brand-caption">NYC Design</div></article><article class="brand-card"><a aria-label="Bath Design" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/bath%20design.mp4"></video></a><div class="brand-caption">Bath Design</div></article></div></section>
 <script>
         // Keep self-hosted reels playing silently without showing browser controls.
@@ -1245,13 +1433,6 @@
     });
   })();
 </script>
-
-
-
-
-
-
-
 <script id="corrected-video-hover">
 (function(){
   var touchDevice = window.matchMedia('(hover:none), (pointer:coarse)').matches;
@@ -1334,6 +1515,5 @@
   });
 })();
 </script>
-
 </body>
 </html>
