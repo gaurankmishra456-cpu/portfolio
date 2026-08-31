@@ -893,6 +893,52 @@
     body:not(.section-page) .hero-desc{font-size:.94rem;}
   }
 
+
+  .brand-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 286px);
+    justify-content:space-between;
+    gap:34px 18px;
+    margin-top:28px;
+  }
+  .brand-card{min-width:0;}
+  .brand-thumb{
+    position:relative;
+    display:block;
+    width:286px;
+    height:161px;
+    overflow:hidden;
+    background:#111;
+    border:1px solid var(--rule);
+    cursor:pointer;
+  }
+  .brand-thumb video{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    background:#111;
+    pointer-events:none;
+  }
+  .brand-caption{
+    padding-top:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:.68rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  @media (max-width:700px){
+    .brand-grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:28px 14px;
+    }
+    .brand-thumb{
+      width:100%;
+      height:auto;
+      aspect-ratio:16/9;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -992,112 +1038,88 @@
           <small>Social Impact Films</small>
         </div>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb"><img src="https://img.youtube.com/vi/eebzRypY8PE/mqdefault.jpg" alt="" loading="lazy"></div>
-          <div>
-            <h3><a href="https://youtu.be/eebzRypY8PE" target="_blank" rel="noopener">Mera Safar — Story of a Transwoman</a></h3>
-            <p>Part of the Mera Safar anthology on youth struggles and dreams. Follows Ayushi's journey of self-discovery and identity as a transwoman.</p>
-            <span class="url"><a href="https://youtu.be/eebzRypY8PE" target="_blank" rel="noopener">youtu.be/eebzRypY8PE</a></span>
-          </div>
-        </div>
+        <div class="film-grid">
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb"><img src="https://img.youtube.com/vi/8l6jlppAg4A/mqdefault.jpg" alt="" loading="lazy"></div>
-          <div>
-            <h3><a href="https://youtu.be/8l6jlppAg4A" target="_blank" rel="noopener">Mera Safar, Episode 2 — Ajay Ki Kahaani</a></h3>
-            <p>The second film in the Mera Safar series. Traces Ajay's story — a young boy fighting circumstance to chase his aspirations.</p>
-            <span class="url"><a href="https://youtu.be/8l6jlppAg4A" target="_blank" rel="noopener">youtu.be/8l6jlppAg4A</a></span>
-          </div>
-        </div>
+          <article class="film-card">
+            <a class="film-thumb" href="https://youtu.be/eebzRypY8PE" target="_blank" rel="noopener" data-youtube-id="eebzRypY8PE">
+              <img src="https://img.youtube.com/vi/eebzRypY8PE/hqdefault.jpg" alt="" loading="lazy">
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://youtu.be/eebzRypY8PE" target="_blank" rel="noopener">Mera Safar — Story of a Transwoman</a></h3>
+              <p>Part of the Mera Safar anthology on youth struggles and dreams. Follows Ayushi's journey of self-discovery and identity as a transwoman.</p>
+            </div>
+          </article>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb"><img src="https://img.youtube.com/vi/AGcHdi3FG9E/mqdefault.jpg" alt="" loading="lazy"></div>
-          <div>
-            <h3><a href="https://www.youtube.com/watch?v=AGcHdi3FG9E" target="_blank" rel="noopener">Mera Safar, Episode 3 — Pooja Ki Kahani</a></h3>
-            <p>The third film in the Mera Safar series. Follows Pooja, a young girl navigating hardship in pursuit of her dreams.</p>
-            <span class="url"><a href="https://www.youtube.com/watch?v=AGcHdi3FG9E" target="_blank" rel="noopener">youtube.com/watch?v=AGcHdi3FG9E</a></span>
-          </div>
-        </div>
+          <article class="film-card">
+            <a class="film-thumb" href="https://youtu.be/8l6jlppAg4A" target="_blank" rel="noopener" data-youtube-id="8l6jlppAg4A">
+              <img src="https://img.youtube.com/vi/8l6jlppAg4A/hqdefault.jpg" alt="" loading="lazy">
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://youtu.be/8l6jlppAg4A" target="_blank" rel="noopener">Mera Safar, Episode 2 — Ajay Ki Kahaani</a></h3>
+              <p>The second film in the Mera Safar series. Traces Ajay's story — a young boy fighting circumstance to chase his aspirations.</p>
+            </div>
+          </article>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb"><img src="https://img.youtube.com/vi/OuItSLYSt2w/mqdefault.jpg" alt="" loading="lazy"></div>
-          <div>
-            <h3><a href="https://www.youtube.com/watch?v=OuItSLYSt2w" target="_blank" rel="noopener">A Film on Tanda! — #RiseUp! Phase IV, YWCA</a></h3>
-            <p>A ground-level documentary from Tanda, made under YWCA's RiseUp! Phase IV programme. Captures grassroots voices and community change.</p>
-            <span class="url"><a href="https://www.youtube.com/watch?v=OuItSLYSt2w" target="_blank" rel="noopener">youtube.com/watch?v=OuItSLYSt2w</a></span>
-          </div>
-        </div>
+          <article class="film-card">
+            <a class="film-thumb" href="https://www.youtube.com/watch?v=AGcHdi3FG9E" target="_blank" rel="noopener" data-youtube-id="AGcHdi3FG9E">
+              <img src="https://img.youtube.com/vi/AGcHdi3FG9E/hqdefault.jpg" alt="" loading="lazy">
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://www.youtube.com/watch?v=AGcHdi3FG9E" target="_blank" rel="noopener">Mera Safar, Episode 3 — Pooja Ki Kahani</a></h3>
+              <p>The third film in the Mera Safar series. Follows Pooja, a young girl navigating hardship in pursuit of her dreams.</p>
+            </div>
+          </article>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb"><img src="https://img.youtube.com/vi/BVKKjx0YhOs/mqdefault.jpg" alt="" loading="lazy"></div>
-          <div>
-            <h3><a href="https://www.youtube.com/watch?v=BVKKjx0YhOs" target="_blank" rel="noopener">RiseUp! Phase IV Implementation, Year 1 — Compilation Film</a></h3>
-            <p>A compilation documenting the first year of RiseUp! Phase IV on the ground. Brings together stories of impact across partner communities.</p>
-            <span class="url"><a href="https://www.youtube.com/watch?v=BVKKjx0YhOs" target="_blank" rel="noopener">youtube.com/watch?v=BVKKjx0YhOs</a></span>
-          </div>
-        </div>
+          <article class="film-card">
+            <a class="film-thumb" href="https://www.youtube.com/watch?v=OuItSLYSt2w" target="_blank" rel="noopener" data-youtube-id="OuItSLYSt2w">
+              <img src="https://img.youtube.com/vi/OuItSLYSt2w/hqdefault.jpg" alt="" loading="lazy">
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://www.youtube.com/watch?v=OuItSLYSt2w" target="_blank" rel="noopener">A Film on Tanda! — #RiseUp! Phase IV, YWCA</a></h3>
+              <p>A ground-level documentary from Tanda, made under YWCA's RiseUp! Phase IV programme. Captures grassroots voices and community change.</p>
+            </div>
+          </article>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb"><img src="https://img.youtube.com/vi/Htc1P2mlIQU/mqdefault.jpg" alt="" loading="lazy"></div>
-          <div>
-            <h3><a href="https://www.youtube.com/watch?v=Htc1P2mlIQU" target="_blank" rel="noopener">Majhi Vasundhara — Building a Net-Zero Maharashtra</a></h3>
-            <p>Documents Maharashtra's Majhi Vasundhara Abhiyaan and its drive toward a net-zero future. Explores the state's climate role as an Under2 Coalition member.</p>
-            <span class="url"><a href="https://www.youtube.com/watch?v=Htc1P2mlIQU" target="_blank" rel="noopener">youtube.com/watch?v=Htc1P2mlIQU</a></span>
-          </div>
-        </div>
+          <article class="film-card">
+            <a class="film-thumb" href="https://www.youtube.com/watch?v=BVKKjx0YhOs" target="_blank" rel="noopener" data-youtube-id="BVKKjx0YhOs">
+              <img src="https://img.youtube.com/vi/BVKKjx0YhOs/hqdefault.jpg" alt="" loading="lazy">
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://www.youtube.com/watch?v=BVKKjx0YhOs" target="_blank" rel="noopener">RiseUp! Phase IV Implementation, Year 1 — Compilation Film</a></h3>
+              <p>A compilation documenting the first year of RiseUp! Phase IV on the ground. Brings together stories of impact across partner communities.</p>
+            </div>
+          </article>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb"><img src="https://img.youtube.com/vi/f6yAc2XvB_w/mqdefault.jpg" alt="" loading="lazy"></div>
-          <div>
-            <h3><a href="https://youtu.be/f6yAc2XvB_w" target="_blank" rel="noopener">Dastan-e-Parwaz</a></h3>
-            <p>A cinematic "tale of flight" — a documentary short exploring aspiration, ambition, and the journey of rising above circumstance.</p>
-            <span class="url"><a href="https://youtu.be/f6yAc2XvB_w" target="_blank" rel="noopener">youtu.be/f6yAc2XvB_w</a></span>
-          </div>
-        </div>
+          <article class="film-card">
+            <a class="film-thumb" href="https://www.youtube.com/watch?v=Htc1P2mlIQU" target="_blank" rel="noopener" data-youtube-id="Htc1P2mlIQU">
+              <img src="https://img.youtube.com/vi/Htc1P2mlIQU/hqdefault.jpg" alt="" loading="lazy">
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://www.youtube.com/watch?v=Htc1P2mlIQU" target="_blank" rel="noopener">Majhi Vasundhara — Building a Net-Zero Maharashtra</a></h3>
+              <p>Documents Maharashtra's Majhi Vasundhara Abhiyaan and its drive toward a net-zero future. Explores the state's climate role as an Under2 Coalition member.</p>
+            </div>
+          </article>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb empty">↗</div>
-          <div>
-            <h3><a href="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/view" target="_blank" rel="noopener">Film on 'Morena, Madhya Pradesh'</a></h3>
-            <p>A film on Morena district, showing its society, culture, and social impact.</p>
-            <span class="url"><a href="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/view" target="_blank" rel="noopener">drive.google.com/file/d/12s1On…</a></span>
-          </div>
-        </div>
-      </section>
+          <article class="film-card">
+            <a class="film-thumb" href="https://youtu.be/f6yAc2XvB_w" target="_blank" rel="noopener" data-youtube-id="f6yAc2XvB_w">
+              <img src="https://img.youtube.com/vi/f6yAc2XvB_w/hqdefault.jpg" alt="" loading="lazy">
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://youtu.be/f6yAc2XvB_w" target="_blank" rel="noopener">Dastan-e-Parwaz</a></h3>
+              <p>A cinematic "tale of flight" — a documentary short exploring aspiration, ambition, and the journey of rising above circumstance.</p>
+            </div>
+          </article>
 
-      <!-- INDEPENDENT FILMS -->
-      <section class="work-section" id="independent">
-        <div class="divider-strip">
-          <div class="holes"><span></span><span></span><span></span></div>
-          <small>Independent Films</small>
-        </div>
+          <article class="film-card">
+            <a class="film-thumb film-thumb-drive" href="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/view" target="_blank" rel="noopener">
+              <span>↗</span>
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/view" target="_blank" rel="noopener">Film on 'Morena, Madhya Pradesh'</a></h3>
+              <p>A film on Morena district, showing its society, culture, and social impact.</p>
+            </div>
+          </article>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb"><img src="https://img.youtube.com/vi/a8T8ckUZHls/mqdefault.jpg" alt="" loading="lazy"></div>
-          <div>
-            <h3><a href="https://www.youtube.com/watch?v=a8T8ckUZHls" target="_blank" rel="noopener">Yaadon Mein Rikt Sthaan | Empty Spaces in Memories</a></h3>
-            <p>A quiet conversation between a grandmother and grandson about a home fading amidst urban development. Reflects on memory, belonging, and the slow transformation of the places we call home.</p>
-            <span class="url"><a href="https://www.youtube.com/watch?v=a8T8ckUZHls" target="_blank" rel="noopener">youtube.com/watch?v=a8T8ckUZHls</a></span>
-          </div>
-        </div>
-
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb empty">↗</div>
-          <div>
-            <h3><a href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" target="_blank" rel="noopener">Life Stories of Bobby Verdi — Kargil War Hero</a></h3>
-            <p>A documentary portrait of Bobby Verdi, a Kargil War hero. Traces his personal journey and the story behind his service.</p>
-            <span class="url"><a href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" target="_blank" rel="noopener">drive.google.com/file/d/1_sU1k…</a></span>
-          </div>
         </div>
       </section>
 
@@ -1141,51 +1163,55 @@
       <section class="work-section" id="social">
         <div class="divider-strip">
           <div class="holes"><span></span><span></span><span></span></div>
-          <small>Social Media</small>
+          <small>Brand Work</small>
         </div>
 
-        <p class="ig-intro">Content creator and Social Media Manager for <a href="https://www.instagram.com/studiovastuinteriors/" target="_blank" rel="noopener">Studio Vāstu Interiors</a> — captions and content written to bring in real client inquiries, not just views.</p>
+        <div class="brand-grid">
 
-        <div class="reel-grid">
-          <div class="reel-card">
-            <video src="assets/reels/Jhoola.mp4" autoplay muted loop playsinline preload="auto"></video>
-            <span class="reel-caption">Jhoola</span>
-          </div>
-          <div class="reel-card">
-            <video src="assets/reels/Smitha%201.mp4" autoplay muted loop playsinline preload="auto"></video>
-            <span class="reel-caption">Smitha 1</span>
-          </div>
-          <div class="reel-card">
-            <video src="assets/reels/Smitha%202.mp4" autoplay muted loop playsinline preload="auto"></video>
-            <span class="reel-caption">Smitha 2</span>
-          </div>
-          <div class="reel-card">
-            <video src="assets/reels/Vin%20Door%20T.mp4" autoplay muted loop playsinline preload="auto"></video>
-            <span class="reel-caption">Vin Door T</span>
-          </div>
-          <div class="reel-card">
-            <video src="assets/reels/bath%20design.mp4" autoplay muted loop playsinline preload="auto"></video>
-            <span class="reel-caption">Bath Design</span>
-          </div>
+          <article class="brand-card">
+            <a class="brand-thumb" href="#" aria-label="Jhoola">
+              <video src="assets/reels/Jhoola.mp4" muted loop playsinline preload="metadata"></video>
+            </a>
+            <div class="brand-caption">Jhoola</div>
+          </article>
+
+          <article class="brand-card">
+            <a class="brand-thumb" href="#" aria-label="Smitha 1">
+              <video src="assets/reels/Smitha%201.mp4" muted loop playsinline preload="metadata"></video>
+            </a>
+            <div class="brand-caption">Smitha 1</div>
+          </article>
+
+          <article class="brand-card">
+            <a class="brand-thumb" href="#" aria-label="Smitha 2">
+              <video src="assets/reels/Smitha%202.mp4" muted loop playsinline preload="metadata"></video>
+            </a>
+            <div class="brand-caption">Smitha 2</div>
+          </article>
+
+          <article class="brand-card">
+            <a class="brand-thumb" href="#" aria-label="Austin Home">
+              <video src="assets/reels/Austin%20home.mp4" muted loop playsinline preload="metadata"></video>
+            </a>
+            <div class="brand-caption">Austin Home</div>
+          </article>
+
+          <article class="brand-card">
+            <a class="brand-thumb" href="#" aria-label="NYC Design">
+              <video src="assets/reels/NYC%20Design1.mp4" muted loop playsinline preload="metadata"></video>
+            </a>
+            <div class="brand-caption">NYC Design</div>
+          </article>
+
+          <article class="brand-card">
+            <a class="brand-thumb" href="#" aria-label="Bath Design">
+              <video src="assets/reels/bath%20design.mp4" muted loop playsinline preload="metadata"></video>
+            </a>
+            <div class="brand-caption">Bath Design</div>
+          </article>
+
         </div>
       </section>
-
-      <script>
-        // Keep self-hosted reels playing silently without showing browser controls.
-        document.querySelectorAll('.reel-card video').forEach((video) => {
-          video.muted = true;
-          video.playsInline = true;
-          video.autoplay = true;
-          video.loop = true;
-
-          const startPlayback = () => {
-            video.play().catch(() => {});
-          };
-
-          if (video.readyState >= 2) startPlayback();
-          else video.addEventListener('loadeddata', startPlayback, { once: true });
-        });
-      </script>
 
       <!-- BLOG POSTS -->
       <section class="work-section" id="blog">
@@ -1419,6 +1445,82 @@
   })();
 </script>
 
+
+
+<script>
+(function(){
+  const cards = document.querySelectorAll('#social .brand-card');
+
+  cards.forEach(function(card){
+    const link = card.querySelector('.brand-thumb');
+    const video = card.querySelector('video');
+    if(!link || !video) return;
+
+    function play(){
+      video.muted = true;
+      video.currentTime = 0;
+      video.play().catch(function(){});
+    }
+
+    function stop(){
+      video.pause();
+      video.currentTime = 0;
+    }
+
+    link.addEventListener('mouseenter', play);
+    link.addEventListener('mouseleave', stop);
+
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+    });
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  const thumbs = document.querySelectorAll('.film-thumb[data-youtube-id]');
+  const desktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  thumbs.forEach(function(thumb){
+    let iframe = null;
+    let timer = null;
+
+    function start(){
+      if(!desktopHover || iframe) return;
+      const id = thumb.getAttribute('data-youtube-id');
+      if(!id) return;
+
+      iframe = document.createElement('iframe');
+      iframe.className = 'hover-player';
+      iframe.src =
+        'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+        '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + encodeURIComponent(id) +
+        '&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3';
+      iframe.title = 'Video preview';
+      iframe.setAttribute('allow', 'autoplay; encrypted-media');
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('aria-hidden', 'true');
+      thumb.appendChild(iframe);
+    }
+
+    function stop(){
+      if(timer) clearTimeout(timer);
+      timer = null;
+      if(iframe){
+        iframe.remove();
+        iframe = null;
+      }
+    }
+
+    thumb.addEventListener('mouseenter', function(){
+      timer = setTimeout(start, 100);
+    });
+    thumb.addEventListener('mouseleave', stop);
+  });
+})();
+</script>
 
 </body>
 </html>
