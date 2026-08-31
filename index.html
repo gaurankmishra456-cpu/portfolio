@@ -929,30 +929,34 @@
       </section>
 
       <!-- INDEPENDENT FILMS -->
-      <section class="work-section" id="independent">
+      <section class="work-section active" id="independent">
         <div class="divider-strip">
           <div class="holes"><span></span><span></span><span></span></div>
           <small>Independent Films</small>
         </div>
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb"><img src="https://img.youtube.com/vi/a8T8ckUZHls/mqdefault.jpg" alt="" loading="lazy"></div>
-          <div>
-            <h3><a href="https://www.youtube.com/watch?v=a8T8ckUZHls" target="_blank" rel="noopener">Yaadon Mein Rikt Sthaan | Empty Spaces in Memories</a></h3>
-            <p>A quiet conversation between a grandmother and grandson about a home fading amidst urban development. Reflects on memory, belonging, and the slow transformation of the places we call home.</p>
-            <span class="url"><a href="https://www.youtube.com/watch?v=a8T8ckUZHls" target="_blank" rel="noopener">youtube.com/watch?v=a8T8ckUZHls</a></span>
-          </div>
-        </div>
+        <div class="film-grid">
 
-        <div class="work-item">
-          <span class="mark">▸</span>
-          <div class="thumb empty">↗</div>
-          <div>
-            <h3><a href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" target="_blank" rel="noopener">Life Stories of Bobby Verdi — Kargil War Hero</a></h3>
-            <p>A documentary portrait of Bobby Verdi, a Kargil War hero. Traces his personal journey and the story behind his service.</p>
-            <span class="url"><a href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" target="_blank" rel="noopener">drive.google.com/file/d/1_sU1k…</a></span>
-          </div>
+          <article class="film-card">
+            <a class="film-thumb" href="https://www.youtube.com/watch?v=a8T8cKUzHTs" target="_blank" rel="noopener" data-youtube-id="a8T8cKUzHTs">
+              <img src="https://img.youtube.com/vi/a8T8cKUzHTs/hqdefault.jpg" alt="" loading="lazy">
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://www.youtube.com/watch?v=a8T8cKUzHTs" target="_blank" rel="noopener">Yaadon Mein Rikt Sthaan | Empty Spaces in Memories</a></h3>
+              <p>A quiet conversation between a grandmother and grandson about a home fading amidst urban development. Reflects on memory, belonging, and the slow transformation of the places we call home.</p>
+            </div>
+          </article>
+
+          <article class="film-card">
+            <a class="film-thumb film-thumb-drive" href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" target="_blank" rel="noopener">
+              <span>↗</span>
+            </a>
+            <div class="film-copy">
+              <h3><a href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" target="_blank" rel="noopener">Life Stories of Bobby Verdi — Kargil War Hero</a></h3>
+              <p>A documentary portrait of Bobby Verdi, a Kargil War hero. Traces his personal journey and the story behind his service.</p>
+            </div>
+          </article>
+
         </div>
       </section>
 
@@ -1346,6 +1350,50 @@
       startTimer = setTimeout(startPreview, 80);
     });
 
+    thumb.addEventListener('mouseleave', stopPreview);
+  });
+})();
+</script>
+
+
+<script>
+(function () {
+  const thumbs = document.querySelectorAll('#independent .film-thumb[data-youtube-id]');
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  thumbs.forEach(function (thumb) {
+    let player = null;
+    let timer = null;
+
+    function startPreview() {
+      if (!canHover || player) return;
+      const id = thumb.getAttribute('data-youtube-id');
+
+      player = document.createElement('iframe');
+      player.className = 'hover-player';
+      player.src =
+        'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+        '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + encodeURIComponent(id) +
+        '&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3';
+      player.title = 'Video preview';
+      player.setAttribute('allow', 'autoplay; encrypted-media');
+      player.setAttribute('frameborder', '0');
+      player.setAttribute('aria-hidden', 'true');
+      thumb.appendChild(player);
+    }
+
+    function stopPreview() {
+      if (timer) clearTimeout(timer);
+      timer = null;
+      if (player) {
+        player.remove();
+        player = null;
+      }
+    }
+
+    thumb.addEventListener('mouseenter', function () {
+      timer = setTimeout(startPreview, 80);
+    });
     thumb.addEventListener('mouseleave', stopPreview);
   });
 })();
