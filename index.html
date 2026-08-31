@@ -912,27 +912,44 @@
 
         <div class="reel-grid">
           <div class="reel-card">
-            <video src="assets/reels/Jhooola.mp4" muted loop playsinline preload="metadata"></video>
+            <video src="assets/reels/Jhooola.mp4" autoplay muted loop playsinline preload="auto"></video>
             <span class="reel-caption">Jhoola</span>
           </div>
           <div class="reel-card">
-            <video src="assets/reels/Smitha%201.mp4" muted loop playsinline preload="metadata"></video>
+            <video src="assets/reels/Smitha%201.mp4" autoplay muted loop playsinline preload="auto"></video>
             <span class="reel-caption">Smitha 1</span>
           </div>
           <div class="reel-card">
-            <video src="assets/reels/Smitha%202.mp4" muted loop playsinline preload="metadata"></video>
+            <video src="assets/reels/Smitha%202.mp4" autoplay muted loop playsinline preload="auto"></video>
             <span class="reel-caption">Smitha 2</span>
           </div>
           <div class="reel-card">
-            <video src="assets/reels/Vin%20Door%20T.mp4" muted loop playsinline preload="metadata"></video>
+            <video src="assets/reels/Vin%20Door%20T.mp4" autoplay muted loop playsinline preload="auto"></video>
             <span class="reel-caption">Vin Door T</span>
           </div>
           <div class="reel-card">
-            <video src="assets/reels/bath%20design.mp4" muted loop playsinline preload="metadata"></video>
+            <video src="assets/reels/bath%20design.mp4" autoplay muted loop playsinline preload="auto"></video>
             <span class="reel-caption">Bath Design</span>
           </div>
         </div>
       </section>
+
+      <script>
+        // Keep self-hosted reels playing silently without showing browser controls.
+        document.querySelectorAll('.reel-card video').forEach((video) => {
+          video.muted = true;
+          video.playsInline = true;
+          video.autoplay = true;
+          video.loop = true;
+
+          const startPlayback = () => {
+            video.play().catch(() => {});
+          };
+
+          if (video.readyState >= 2) startPlayback();
+          else video.addEventListener('loadeddata', startPlayback, { once: true });
+        });
+      </script>
 
       <!-- BLOG POSTS -->
       <section class="work-section" id="blog">
