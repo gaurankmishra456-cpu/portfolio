@@ -1054,6 +1054,62 @@ a{
 }
 </style>
 
+
+<style id="reference-about-elsewhere">
+.about-panel{
+  width:100%;
+  margin-top:48px;
+}
+.about-panel .section-label,
+.elsewhere-panel .section-label{
+  margin-bottom:14px;
+}
+.about-panel p{
+  margin:0;
+  max-width:290px;
+  font-family:'Fraunces', Georgia, serif;
+  font-size:.94rem;
+  line-height:1.58;
+  color:var(--ink-soft);
+}
+.elsewhere-panel{
+  width:100%;
+  margin-top:40px;
+}
+.elsewhere-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.elsewhere-list li{
+  margin:0 0 16px;
+}
+.elsewhere-list a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  color:var(--leader-red);
+  font-family:'JetBrains Mono', monospace;
+  font-size:.68rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.elsewhere-list a span{
+  font-size:.8rem;
+  letter-spacing:0;
+}
+.elsewhere-list a:hover{
+  color:var(--ink);
+}
+@media (max-width:850px){
+  .about-panel,
+  .elsewhere-panel{
+    margin-top:32px;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="site-logo-wrap">
@@ -1298,37 +1354,35 @@ a{
 <span>GAURANK_MISHRA.MOV</span>
 <span>FRAME 001/013</span>
 </div>
-<div class="connect-panel">
-<div class="section-label">Connect</div>
-<ul class="connect-list">
-<li>
-<span class="connect-label">Instagram</span>
-<a href="https://www.instagram.com/lallan_chitra/" rel="noopener" target="_blank">@lallan_chitra</a>
-</li>
-<li>
-<span class="connect-label">YouTube</span>
-<a href="https://www.youtube.com/@lallanchitra" rel="noopener" target="_blank">@lallanchitra</a>
-</li>
-<li>
-<span class="connect-label">LinkedIn</span>
-<a href="https://www.linkedin.com/in/gaurank-mishra-b775abb7/" rel="noopener" target="_blank">/in/gaurank-mishra</a>
-</li>
-<li>
-<span class="connect-label">Email</span>
-<a href="mailto:gaurankmishra456@gmail.com">gaurankmishra456@gmail.com</a>
-</li>
-<li>
-<span class="connect-label">Phone</span>
-<a href="tel:+917303741997">+91 73037 41997</a>
-</li>
-</ul>
-</div>
-<div class="press-panel">
-<div class="section-label">Get in Touch</div>
-<p>For collaborations, screenings, or NGO partnership work.</p>
-<a href="https://linktr.ee/gaurank_mishra" rel="noopener" target="_blank">↗ linktr.ee/gaurank_mishra</a>
-</div>
-</aside>
+    <div class="about-panel">
+      <div class="section-label">ABOUT</div>
+      <p>
+        I collaborate with brands, people, and creative practices to shape ideas
+        into meaningful stories through film and visual media.
+      </p>
+    </div>
+
+    <div class="elsewhere-panel">
+      <div class="section-label">ELSEWHERE</div>
+      <ul class="elsewhere-list">
+        <li>
+          <a href="https://www.instagram.com/lallan_chitra/" target="_blank" rel="noopener">
+            Instagram <span>↗</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/@lallanchitra" target="_blank" rel="noopener">
+            YouTube <span>↗</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/gaurank-mishra-b775abb7/" target="_blank" rel="noopener">
+            LinkedIn <span>↗</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
 </div>
 <script>
   function showTab(tabId){
