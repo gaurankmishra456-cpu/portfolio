@@ -439,6 +439,36 @@
     width:100% !important;
   }
 
+  /* ---------- self-hosted reel grid ---------- */
+  .reel-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+    gap:20px;
+  }
+  .reel-card{
+    position:relative;
+    aspect-ratio:9/16;
+    background:#000;
+    overflow:hidden;
+    border-radius:2px;
+  }
+  .reel-card video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .reel-caption{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:10px 12px;
+    font-size:.72rem;
+    letter-spacing:.03em;
+    color:#fff;
+    background:linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,0));
+    pointer-events:none;
+  }
+
   /* ---------- focused section pages ---------- */
   .section-return{display:none;}
   body.section-page .site-logo-wrap,
@@ -880,17 +910,23 @@
 
         <p class="ig-intro">Content creator and Social Media Manager for <a href="https://www.instagram.com/studiovastuinteriors/" target="_blank" rel="noopener">Studio Vāstu Interiors</a> — captions and content written to bring in real client inquiries, not just views.</p>
 
-        <div class="ig-grid">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DcRSMycPvDX/" data-instgrm-version="14"></blockquote>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbWBluiPJ1k/" data-instgrm-version="14"></blockquote>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Dblf28vvjPu/" data-instgrm-version="14"></blockquote>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbD_l2jPbk1/" data-instgrm-version="14"></blockquote>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Da0kY0NSggu/" data-instgrm-version="14"></blockquote>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DaN4KomPUQz/" data-instgrm-version="14"></blockquote>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DZIZsI_varD/" data-instgrm-version="14"></blockquote>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYNHYpej1aH/" data-instgrm-version="14"></blockquote>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DX9sIzLj1E6/" data-instgrm-version="14"></blockquote>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXpEfhjj-MB/" data-instgrm-version="14"></blockquote>
+        <div class="reel-grid">
+          <div class="reel-card">
+            <video src="assets/reels/Jhoola.mp4" muted loop playsinline preload="metadata"></video>
+            <span class="reel-caption">Jhoola</span>
+          </div>
+          <div class="reel-card">
+            <video src="assets/reels/Smitha%201.mp4" muted loop playsinline preload="metadata"></video>
+            <span class="reel-caption">Smitha 1</span>
+          </div>
+          <div class="reel-card">
+            <video src="assets/reels/Smitha%202.mp4" muted loop playsinline preload="metadata"></video>
+            <span class="reel-caption">Smitha 2</span>
+          </div>
+          <div class="reel-card">
+            <video src="assets/reels/Vin%20Door%20T.mp4" muted loop playsinline preload="metadata"></video>
+            <span class="reel-caption">Vin Door T</span>
+          </div>
         </div>
       </section>
 
@@ -1051,12 +1087,42 @@
     const main = document.querySelector('main.main');
     if(main) main.scrollTop = 0;
     window.scrollTo({top:0, behavior:'auto'});
-    // Re-render Instagram embeds whenever the Social tab becomes visible,
-    // since they can't size themselves correctly while display:none.
-    if(tabId === 'social' && window.instgrm && window.instgrm.Embeds){
-      window.instgrm.Embeds.process();
-    }
   }
+
+  // Reel grid: hover-to-preview on desktop, tap-to-toggle on touch.
+  (function(){
+    const cards = document.querySelectorAll('.reel-card');
+    cards.forEach(function(card){
+      const vid = card.querySelector('video');
+      if(!vid) return;
+
+      function stopAllOthers(){
+        cards.forEach(function(c){
+          if(c === card) return;
+          const v = c.querySelector('video');
+          if(v){ v.pause(); v.currentTime = 0; }
+        });
+      }
+
+      card.addEventListener('mouseenter', function(){
+        stopAllOthers();
+        vid.play().catch(function(){});
+      });
+      card.addEventListener('mouseleave', function(){
+        vid.pause();
+        vid.currentTime = 0;
+      });
+      card.addEventListener('click', function(){
+        if(vid.paused){
+          stopAllOthers();
+          vid.play().catch(function(){});
+        } else {
+          vid.pause();
+          vid.currentTime = 0;
+        }
+      });
+    });
+  })();
 
   // When a section link opens in a new tab, show the matching section
   // instead of always defaulting to the first one.
@@ -1115,7 +1181,6 @@
   })();
 </script>
 
-<script async src="https://www.instagram.com/embed.js"></script>
 
 </body>
 </html>
