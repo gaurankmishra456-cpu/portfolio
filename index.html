@@ -1332,7 +1332,7 @@ a{
 
 /* The featured video sits above the reel grid with only a small gap. */
 .timeline-featured + .brand-grid {
-  margin-top: 0;
+  margin-top: 0 !important;
 }
 
 @media (max-width: 850px) {
@@ -1479,12 +1479,12 @@ a{
 <div class="timeline-featured">
   <div class="timeline-video">
     <video autoplay muted loop playsinline preload="auto" aria-label="Timeline 1">
-      <source src="Timeline_1_web_visually_lossless.mp4" type="video/mp4">
+      <source src="assets/reels/timeline-1.mp4" type="video/mp4">
     </video>
   </div>
 </div>
 
-<div class="brand-grid"><article class="brand-card"><a aria-label="Jhoola" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Jhoola.mp4"></video></a><div class="brand-caption">Jhoola</div></article><article class="brand-card"><a aria-label="Smitha 1" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Smitha%201.mp4"></video></a><div class="brand-caption">Smitha 1</div></article><article class="brand-card"><a aria-label="Smitha 2" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Smitha%202.mp4"></video></a><div class="brand-caption">Smitha 2</div></article><article class="brand-card"><a aria-label="Austin Home" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Austin%20home.mp4"></video></a><div class="brand-caption">Austin Home</div></article><article class="brand-card"><a aria-label="NYC Design" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/NYC%20Design1.mp4"></video></a><div class="brand-caption">NYC Design</div></article><article class="brand-card"><a aria-label="Bath Design" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/bath%20design.mp4"></video></a><div class="brand-caption">Bath Design</div></article><article class="brand-card landscape-reel"><a aria-label="Timeline 1" class="brand-thumb landscape" href="#"><video loop="" muted="" autoplay="" playsinline="" webkit-playsinline="" preload="auto" src="assets/reels/timeline-1.mp4"></video></a><div class="brand-caption">Timeline 1</div></article> </div></section>
+<div class="brand-grid"><article class="brand-card"><a aria-label="Jhoola" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Jhoola.mp4"></video></a><div class="brand-caption">Jhoola</div></article><article class="brand-card"><a aria-label="Smitha 1" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Smitha%201.mp4"></video></a><div class="brand-caption">Smitha 1</div></article><article class="brand-card"><a aria-label="Smitha 2" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Smitha%202.mp4"></video></a><div class="brand-caption">Smitha 2</div></article><article class="brand-card"><a aria-label="Austin Home" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/Austin%20home.mp4"></video></a><div class="brand-caption">Austin Home</div></article><article class="brand-card"><a aria-label="NYC Design" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/NYC%20Design1.mp4"></video></a><div class="brand-caption">NYC Design</div></article><article class="brand-card"><a aria-label="Bath Design" class="brand-thumb" href="#"><video loop="" muted="" playsinline="" preload="metadata" src="assets/reels/bath%20design.mp4"></video></a><div class="brand-caption">Bath Design</div></article> </div></section>
 <script>
         // Keep self-hosted reels playing silently without showing browser controls.
         document.querySelectorAll('.reel-card video').forEach((video) => {
@@ -1883,25 +1883,39 @@ a{
 
 <script id="timeline-1-autoplay-final">
 (function () {
-  const video = document.querySelector('.timeline-featured video');
-  if (!video) return;
+  const videos = document.querySelectorAll('.timeline-featured video');
 
-  video.muted = true;
-  video.defaultMuted = true;
-  video.setAttribute('muted', '');
-  video.setAttribute('playsinline', '');
-  video.setAttribute('webkit-playsinline', '');
+  videos.forEach(function (video) {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.playsInline = true;
 
-  const tryPlay = () => {
-    const p = video.play();
-    if (p && typeof p.catch === 'function') p.catch(() => {});
-  };
+    video.setAttribute('muted', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('loop', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
 
-  if (video.readyState >= 2) tryPlay();
-  else video.addEventListener('canplay', tryPlay, { once: true });
+    function start() {
+      const promise = video.play();
+      if (promise && promise.catch) {
+        promise.catch(function () {});
+      }
+    }
 
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && video.paused) tryPlay();
+    if (video.readyState >= 2) {
+      start();
+    } else {
+      video.addEventListener('loadeddata', start, { once: true });
+      video.addEventListener('canplay', start, { once: true });
+    }
+
+    window.addEventListener('load', start);
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && video.paused) start();
+    });
   });
 })();
 </script>
