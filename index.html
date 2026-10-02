@@ -1408,6 +1408,29 @@ a{
 }
 </style>
 
+<style id="mobile-scroll-fix">
+/* MOBILE ONLY: keep the sidebar and portrait/about column in normal document flow.
+   Desktop/web layout is unchanged. */
+@media (max-width: 850px){
+  .page{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .sidebar,
+  .portrait-col{
+    position:static !important;
+    top:auto !important;
+    align-self:stretch;
+    max-height:none !important;
+    overflow:visible !important;
+  }
+
+  .main{
+    min-width:0;
+  }
+}
+</style>
 </head>
 <body>
 <div class="site-logo-wrap">
