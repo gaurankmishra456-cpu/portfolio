@@ -1,43 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Photography by Gaurank Mishra">
-  <title>Photography — Gaurank Mishra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root{--paper:#f5f3ee;--paper-dark:#eae6dc;--ink:#16160f;--ink-soft:#4a4a3f;--ink-faint:#8a8a78;--red:#9a2b1e;--rule:#d8d3c4;}
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 Inter,sans-serif}
-    a{color:inherit;text-decoration:none}.page{width:min(1440px,100%);margin:auto;padding:28px 42px 70px}.topbar{display:flex;justify-content:space-between;align-items:center;padding:0 0 28px;border-bottom:1px solid var(--rule)}
-    .brand{font:500 1.25rem Fraunces,serif}.back{font:500 .7rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);transition:color .15s}.back:hover{color:var(--red)}
-    .intro{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(220px,.75fr);gap:40px;padding:90px 0 60px;align-items:end}.eyebrow,.meta{font:.68rem 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
-    h1{font:500 clamp(3.2rem,9vw,8.2rem)/.84 Fraunces,serif;letter-spacing:-.065em;margin:16px 0 0}.intro p{max-width:360px;margin:0;color:var(--ink-soft);font-size:.92rem}.intro p::before{content:"";display:block;width:32px;height:1px;background:var(--red);margin-bottom:18px}
-    .gallery{columns:3 260px;column-gap:15px}.photo{position:relative;display:block;break-inside:avoid;margin:0 0 15px;background:var(--paper-dark);overflow:hidden;min-height:240px}.photo img{width:100%;display:block;object-fit:cover;transition:transform .6s cubic-bezier(.2,.65,.3,1),filter .4s;filter:saturate(.9) contrast(1.03)}.photo:hover img{transform:scale(1.035);filter:saturate(1.05) contrast(1.06)}
-    .caption{position:absolute;inset:auto 0 0;padding:32px 16px 14px;color:var(--paper);font:.67rem 'JetBrains Mono',monospace;letter-spacing:.06em;background:linear-gradient(transparent,rgba(0,0,0,.72));opacity:0;transform:translateY(8px);transition:.25s}.photo:hover .caption{opacity:1;transform:none}
-    .empty{column-span:all;display:flex;min-height:380px;align-items:center;justify-content:center;padding:36px;border:1px dashed var(--rule);background:linear-gradient(135deg,transparent 25%,rgba(216,211,196,.32) 25%,rgba(216,211,196,.32) 50%,transparent 50%,transparent 75%,rgba(216,211,196,.32) 75%);background-size:18px 18px;text-align:center}.empty div{background:var(--paper);padding:24px 28px;box-shadow:0 6px 24px rgba(22,22,15,.06)}.empty strong{font:500 1.2rem Fraunces,serif;display:block;margin-bottom:6px}.empty span{color:var(--ink-faint);font-size:.78rem}
-    footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--rule);margin-top:65px;padding-top:16px;color:var(--ink-faint);font:.65rem 'JetBrains Mono',monospace;letter-spacing:.04em}@media(max-width:620px){.page{padding:22px 20px 50px}.intro{display:block;padding:60px 0 38px}.intro p{margin-top:30px}h1{font-size:4rem}.gallery{columns:1}.topbar{padding-bottom:20px}footer{display:block}footer span+span{display:block;margin-top:4px}}
-  </style>
-</head>
-<body>
-  <main class="page">
-    <header class="topbar"><a class="brand" href="index.html">Gaurank Mishra</a><a class="back" href="index.html#blog">← Back to portfolio</a></header>
-    <section class="intro" aria-labelledby="page-title"><div><div class="eyebrow">A visual journal</div><h1 id="page-title">Photography</h1></div><p>Small moments, held a little longer. A growing collection of frames from the road, the room, and everything in between.</p></section>
-    <section class="gallery" id="gallery" aria-label="Photography gallery"><div class="empty"><div><strong>New frames coming soon.</strong><span>Upload photographs directly to the <code>photography</code> folder on GitHub.</span></div></div></section>
-    <footer><span>© 2026 Gaurank Mishra</span><span id="photo-count">00 frames</span></footer>
-  </main>
-  <script>
-    const gallery = document.getElementById('gallery');
-    const photoCount = document.getElementById('photo-count');
-    const repository = 'gaurankmishra456-cpu/portfolio';
-    const folder = 'photography';
-    fetch(`https://api.github.com/repos/${repository}/contents/${folder}?ref=main`).then(response => { if (!response.ok) throw new Error('Gallery unavailable'); return response.json(); }).then(files => {
-      const photos = files.filter(file => file.type === 'file' && /\.(avif|gif|jpe?g|png|webp)$/i.test(file.name)).map(file => ({ src: file.download_url, alt: file.name.replace(/[-_]/g, ' ').replace(/\.[^.]+$/, ''), caption: '' }));
-      if (!photos.length) return;
-      gallery.innerHTML = photos.map((photo, index) => `<figure class="photo"><img src="${photo.src}" alt="${photo.alt || ''}" loading="${index < 3 ? 'eager' : 'lazy'}"><figcaption class="caption">${photo.caption || ''}</figcaption></figure>`).join('');
-      photoCount.textContent = String(photos.length).padStart(2, '0') + (photos.length === 1 ? ' frame' : ' frames');
-    }).catch(() => {});
-  </script>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Photography — Gaurank Mishra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f5f3ee;--paper-dark:#eae6dc;--ink:#16160f;--ink-soft:#4a4a3f;--ink-faint:#8a8a78;--leader-red:#9a2b1e;--sage:#6b7156;--rule:#d8d3c4}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 Inter,sans-serif}.wrap{max-width:1400px;margin:auto;padding:30px 5vw 70px}.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--rule);padding-bottom:22px}.name{font-size:14px;font-weight:600;letter-spacing:.02em}.back,.meta{font:11px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.08em}.back:hover{color:var(--leader-red)}.intro{padding:52px 0 30px;display:flex;justify-content:space-between;align-items:end;gap:24px}.eyebrow{font:11px 'JetBrains Mono',monospace;color:var(--sage);letter-spacing:.12em;text-transform:uppercase}.intro h1{font:300 clamp(42px,7vw,82px)/1.02 Fraunces,serif;letter-spacing:-.045em;margin:12px 0}.intro p{max-width:370px;color:var(--ink-soft);margin:0 0 7px}.grid{columns:2;column-gap:18px}.card{break-inside:avoid;margin:0 0 18px;cursor:pointer}.card img{width:100%;height:auto;display:block;filter:grayscale(100%);transition:filter .3s,opacity .3s}.card:hover img{filter:grayscale(70%);opacity:.92}.caption{display:flex;justify-content:space-between;gap:12px;padding:9px 0 4px;color:var(--ink-faint);font:10px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em}.foot{border-top:1px solid var(--rule);margin-top:36px;padding-top:18px;display:flex;justify-content:space-between;color:var(--ink-faint);font:10px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.07em}.lightbox{position:fixed;inset:0;background:rgba(15,15,12,.94);display:none;align-items:center;justify-content:center;padding:4vw;z-index:5}.lightbox.open{display:flex}.lightbox img{max-width:94vw;max-height:90vh;object-fit:contain}.close{position:absolute;right:24px;top:18px;background:none;border:0;color:white;font-size:32px;cursor:pointer}@media(min-width:850px){.grid{columns:3;column-gap:22px}.card{margin-bottom:22px}}@media(max-width:600px){.wrap{padding:22px 20px 42px}.intro{display:block;padding-top:38px}.intro p{margin-top:18px}.grid{columns:1}.top{align-items:flex-start}.foot{gap:20px;flex-wrap:wrap}}
+</style></head><body><main class="wrap"><header class="top"><div class="name">Gaurank Mishra <span style="color:var(--ink-faint);font-weight:400">/ Photography</span></div><a class="back" href="index.html">← Back to archive</a></header><section class="intro"><div><div class="eyebrow">Selected frames · 01—04</div><h1>Photography</h1></div><p>People, gestures, and fleeting moments from everyday life.</p></section><section class="grid" aria-label="Photography gallery">
+<figure class="card"><img src="images/mother-and-child.jpg" alt="A mother holding a baby" loading="lazy"><figcaption class="caption"><span>Mother & child</span><span>01</span></figcaption></figure>
+<figure class="card"><img src="images/father-and-child.jpg" alt="A child resting on an adult's shoulder" loading="lazy"><figcaption class="caption"><span>In safe arms</span><span>02</span></figcaption></figure>
+<figure class="card"><img src="images/portrait.jpg" alt="Close portrait of an older woman" loading="lazy"><figcaption class="caption"><span>A portrait</span><span>03</span></figcaption></figure>
+<figure class="card"><img src="images/childhood.jpg" alt="A smiling child looking upward" loading="lazy"><figcaption class="caption"><span>Childhood</span><span>04</span></figcaption></figure>
+</section><footer class="foot"><span>Gaurank Mishra · Photography</span><span>Four photographs</span></footer></main><div class="lightbox" id="lightbox" role="dialog" aria-label="Expanded photograph"><button class="close" aria-label="Close image">×</button><img id="lightbox-img" alt=""></div><script>const box=document.getElementById('lightbox'),big=document.getElementById('lightbox-img');document.querySelectorAll('.card img').forEach(img=>img.addEventListener('click',()=>{big.src=img.src;big.alt=img.alt;box.classList.add('open')}));function closeBox(){box.classList.remove('open');big.src=''}box.querySelector('.close').addEventListener('click',closeBox);box.addEventListener('click',e=>{if(e.target===box)closeBox()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBox()});</script></body></html>
