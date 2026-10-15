@@ -1443,6 +1443,45 @@ a{
 @media(max-width:700px){.podcast-player-grid{grid-template-columns:1fr;gap:24px}}
 </style>
 
+
+<style id="independent-films-large-16x9-player">
+/* Independent Films: large, playable landscape players */
+body.section-page #independent .work-item{
+  display:block;
+  padding:24px 0 30px;
+}
+body.section-page #independent .work-item .mark{display:none;}
+body.section-page #independent .work-item .thumb.playable-film{
+  width:100%;
+  height:auto;
+  aspect-ratio:16/9;
+  margin:0 0 16px;
+  border:1px solid var(--rule);
+  background:#000;
+}
+body.section-page #independent .work-item .thumb.playable-film iframe{
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+}
+body.section-page #independent .work-item h3{
+  font-size:1.35rem;
+  line-height:1.3;
+  margin:0 0 8px;
+}
+body.section-page #independent .work-item p{
+  max-width:760px;
+  font-size:.92rem;
+  line-height:1.65;
+  margin-bottom:10px;
+}
+@media(max-width:600px){
+  body.section-page #independent .work-item{padding:18px 0 24px;}
+  body.section-page #independent .work-item h3{font-size:1.12rem;}
+}
+</style>
+
 </head>
 <body>
 <div class="site-logo-wrap">
