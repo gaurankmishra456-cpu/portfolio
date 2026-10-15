@@ -1444,41 +1444,20 @@ a{
 </style>
 
 
-<style id="independent-films-large-16x9-player">
-/* Independent Films: large, playable landscape players */
-body.section-page #independent .work-item{
-  display:block;
-  padding:24px 0 30px;
-}
-body.section-page #independent .work-item .mark{display:none;}
-body.section-page #independent .work-item .thumb.playable-film{
-  width:100%;
-  height:auto;
-  aspect-ratio:16/9;
-  margin:0 0 16px;
-  border:1px solid var(--rule);
-  background:#000;
-}
-body.section-page #independent .work-item .thumb.playable-film iframe{
-  display:block;
-  width:100%;
-  height:100%;
-  border:0;
-}
-body.section-page #independent .work-item h3{
-  font-size:1.35rem;
-  line-height:1.3;
-  margin:0 0 8px;
-}
-body.section-page #independent .work-item p{
-  max-width:760px;
-  font-size:.92rem;
-  line-height:1.65;
-  margin-bottom:10px;
-}
-@media(max-width:600px){
-  body.section-page #independent .work-item{padding:18px 0 24px;}
-  body.section-page #independent .work-item h3{font-size:1.12rem;}
+<style id="social-impact-wide-playable-layout">
+/* Social Impact Films: use the available screen width with large playable 16:9 players. */
+body.section-page:has(#social-impact.active) .section-return{max-width:min(1600px,96vw);padding-left:24px;padding-right:24px;}
+body.section-page:has(#social-impact.active) .page{max-width:min(1600px,96vw);width:100%;}
+body.section-page:has(#social-impact.active) .main{padding:42px 24px 70px;}
+#social-impact .social-impact-wide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 28px;margin-top:28px;}
+#social-impact .film-card{min-width:0;}
+#social-impact .film-thumb.film-player{display:block;position:relative;width:100%;aspect-ratio:16/9;height:auto;overflow:hidden;background:#000;border:1px solid var(--rule);}
+#social-impact .film-thumb.film-player iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0;background:#000;}
+#social-impact .film-copy{padding-top:12px;}
+@media(max-width:700px){
+ body.section-page:has(#social-impact.active) .section-return{padding-left:20px;padding-right:20px;}
+ body.section-page:has(#social-impact.active) .main{padding:32px 20px 50px;}
+ #social-impact .social-impact-wide-grid{grid-template-columns:1fr;gap:30px;}
 }
 </style>
 
@@ -1545,7 +1524,7 @@ body.section-page #independent .work-item p{
 <div class="holes"><span></span><span></span><span></span></div>
 <small>Social Impact Films</small>
 </div>
-<div class="film-grid"><article class="film-card"><a class="film-thumb" data-youtube-id="eebzRypY8PE" href="https://youtu.be/eebzRypY8PE" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/eebzRypY8PE/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://youtu.be/eebzRypY8PE" rel="noopener" target="_blank">Mera Safar — Story of a Transwoman</a></h3><p>Part of the Mera Safar anthology on youth struggles and dreams. Follows Ayushi's journey of self-discovery and identity as a transwoman.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="8l6jlppAg4A" href="https://youtu.be/8l6jlppAg4A" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/8l6jlppAg4A/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://youtu.be/8l6jlppAg4A" rel="noopener" target="_blank">Mera Safar, Episode 2 — Ajay Ki Kahaani</a></h3><p>The second film in the Mera Safar series. Traces Ajay's story — a young boy fighting circumstance to chase his aspirations.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="AGcHdi3FG9E" href="https://www.youtube.com/watch?v=AGcHdi3FG9E" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/AGcHdi3FG9E/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=AGcHdi3FG9E" rel="noopener" target="_blank">Mera Safar, Episode 3 — Pooja Ki Kahani</a></h3><p>The third film in the Mera Safar series. Follows Pooja, a young girl navigating hardship in pursuit of her dreams.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="OuItSLYSt2w" href="https://www.youtube.com/watch?v=OuItSLYSt2w" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/OuItSLYSt2w/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=OuItSLYSt2w" rel="noopener" target="_blank">A Film on Tanda! — #RiseUp! Phase IV, YWCA</a></h3><p>A ground-level documentary from Tanda, made under YWCA's RiseUp! Phase IV programme. Captures grassroots voices and community change.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="BVKKjx0YhOs" href="https://www.youtube.com/watch?v=BVKKjx0YhOs" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/BVKKjx0YhOs/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=BVKKjx0YhOs" rel="noopener" target="_blank">RiseUp! Phase IV Implementation, Year 1 — Compilation Film</a></h3><p>A compilation documenting the first year of RiseUp! Phase IV on the ground. Brings together stories of impact across partner communities.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="Htc1P2mlIQU" href="https://www.youtube.com/watch?v=Htc1P2mlIQU" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/Htc1P2mlIQU/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=Htc1P2mlIQU" rel="noopener" target="_blank">Majhi Vasundhara — Building a Net-Zero Maharashtra</a></h3><p>Documents Maharashtra's Majhi Vasundhara Abhiyaan and its drive toward a net-zero future. Explores the state's climate role as an Under2 Coalition member.</p></div></article><article class="film-card"><a class="film-thumb" data-youtube-id="f6yAc2XvB_w" href="https://youtu.be/f6yAc2XvB_w" rel="noopener" target="_blank"><img alt="" loading="lazy" src="https://img.youtube.com/vi/f6yAc2XvB_w/hqdefault.jpg"/></a><div class="film-copy"><h3><a href="https://youtu.be/f6yAc2XvB_w" rel="noopener" target="_blank">Dastan-e-Parwaz</a></h3><p>A cinematic "tale of flight" — a documentary short exploring aspiration, ambition, and the journey of rising above circumstance.</p></div></article><article class="film-card"><a class="film-thumb film-thumb-empty" href="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/view" rel="noopener" target="_blank">↗</a><div class="film-copy"><h3><a href="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/view" rel="noopener" target="_blank">Film on 'Morena, Madhya Pradesh'</a></h3><p>A film on Morena district, showing its society, culture, and social impact.</p></div></article></div></section>
+<div class="film-grid social-impact-wide-grid"><article class="film-card"><div class="film-thumb film-player"><iframe src="https://www.youtube-nocookie.com/embed/eebzRypY8PE?controls=1&rel=0" title="Film player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="film-copy"><h3><a href="https://youtu.be/eebzRypY8PE" rel="noopener" target="_blank">Mera Safar — Story of a Transwoman</a></h3><p>Part of the Mera Safar anthology on youth struggles and dreams. Follows Ayushi's journey of self-discovery and identity as a transwoman.</p></div></article><article class="film-card"><div class="film-thumb film-player"><iframe src="https://www.youtube-nocookie.com/embed/8l6jlppAg4A?controls=1&rel=0" title="Film player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="film-copy"><h3><a href="https://youtu.be/8l6jlppAg4A" rel="noopener" target="_blank">Mera Safar, Episode 2 — Ajay Ki Kahaani</a></h3><p>The second film in the Mera Safar series. Traces Ajay's story — a young boy fighting circumstance to chase his aspirations.</p></div></article><article class="film-card"><div class="film-thumb film-player"><iframe src="https://www.youtube-nocookie.com/embed/AGcHdi3FG9E?controls=1&rel=0" title="Film player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=AGcHdi3FG9E" rel="noopener" target="_blank">Mera Safar, Episode 3 — Pooja Ki Kahani</a></h3><p>The third film in the Mera Safar series. Follows Pooja, a young girl navigating hardship in pursuit of her dreams.</p></div></article><article class="film-card"><div class="film-thumb film-player"><iframe src="https://www.youtube-nocookie.com/embed/OuItSLYSt2w?controls=1&rel=0" title="Film player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=OuItSLYSt2w" rel="noopener" target="_blank">A Film on Tanda! — #RiseUp! Phase IV, YWCA</a></h3><p>A ground-level documentary from Tanda, made under YWCA's RiseUp! Phase IV programme. Captures grassroots voices and community change.</p></div></article><article class="film-card"><div class="film-thumb film-player"><iframe src="https://www.youtube-nocookie.com/embed/BVKKjx0YhOs?controls=1&rel=0" title="Film player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=BVKKjx0YhOs" rel="noopener" target="_blank">RiseUp! Phase IV Implementation, Year 1 — Compilation Film</a></h3><p>A compilation documenting the first year of RiseUp! Phase IV on the ground. Brings together stories of impact across partner communities.</p></div></article><article class="film-card"><div class="film-thumb film-player"><iframe src="https://www.youtube-nocookie.com/embed/Htc1P2mlIQU?controls=1&rel=0" title="Film player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="film-copy"><h3><a href="https://www.youtube.com/watch?v=Htc1P2mlIQU" rel="noopener" target="_blank">Majhi Vasundhara — Building a Net-Zero Maharashtra</a></h3><p>Documents Maharashtra's Majhi Vasundhara Abhiyaan and its drive toward a net-zero future. Explores the state's climate role as an Under2 Coalition member.</p></div></article><article class="film-card"><div class="film-thumb film-player"><iframe src="https://www.youtube-nocookie.com/embed/f6yAc2XvB_w?controls=1&rel=0" title="Film player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="film-copy"><h3><a href="https://youtu.be/f6yAc2XvB_w" rel="noopener" target="_blank">Dastan-e-Parwaz</a></h3><p>A cinematic "tale of flight" — a documentary short exploring aspiration, ambition, and the journey of rising above circumstance.</p></div></article><article class="film-card"><div class="film-thumb film-player"><iframe src="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/preview" title="Film player" loading="lazy" allow="autoplay" allowfullscreen></iframe></div><div class="film-copy"><h3><a href="https://drive.google.com/file/d/12s1OnMLvxK9yjE3fuXUf1ThJzLtO043T/view" rel="noopener" target="_blank">Film on 'Morena, Madhya Pradesh'</a></h3><p>A film on Morena district, showing its society, culture, and social impact.</p></div></article></div></section>
 <!-- INDEPENDENT FILMS -->
 <section class="work-section" id="independent">
 <div class="divider-strip">
