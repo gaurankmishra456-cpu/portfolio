@@ -1461,6 +1461,18 @@ body.section-page:has(#social-impact.active) .main{padding:42px 24px 70px;}
 }
 </style>
 
+
+<style id="independent-films-wide-playable">
+/* Independent Films: large, native 16:9 embedded players, matching the wider film-card treatment. */
+#independent .independent-film-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 28px;margin-top:28px;width:100%;}
+#independent .independent-film-card{min-width:0;border-bottom:1px solid var(--rule);padding-bottom:22px;}
+#independent .independent-film-player{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000;border:1px solid var(--rule);}
+#independent .independent-film-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000;}
+#independent .independent-film-copy h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.08rem;line-height:1.4;margin:14px 0 7px;}
+#independent .independent-film-copy p{font-size:.88rem;line-height:1.55;margin:0;color:var(--ink-soft);}
+#independent .independent-film-copy .url{display:block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--ink-faint);}
+@media(max-width:700px){#independent .independent-film-grid{grid-template-columns:1fr;gap:28px;}}
+</style>
 </head>
 <body>
 <div class="site-logo-wrap">
@@ -1531,23 +1543,15 @@ body.section-page:has(#social-impact.active) .main{padding:42px 24px 70px;}
 <div class="holes"><span></span><span></span><span></span></div>
 <small>Independent Films</small>
 </div>
-<div class="work-item">
-<span class="mark">▸</span>
-<div class="thumb playable-film"><iframe src="https://www.youtube-nocookie.com/embed/a8T8ckUZHls?controls=1&rel=0" title="Yaadon Mein Rikt Sthaan | Empty Spaces in Memories" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-<div>
-<h3><a href="https://youtu.be/a8T8ckUZHls?si=PLoPqHYdYaqBQard" rel="noopener" target="_blank">Yaadon Mein Rikt Sthaan | Empty Spaces in Memories</a></h3>
-<p>A quiet conversation between a grandmother and grandson about a home fading amidst urban development. Reflects on memory, belonging, and the slow transformation of the places we call home.</p>
-<span class="url"><a href="https://youtu.be/a8T8ckUZHls?si=PLoPqHYdYaqBQard" rel="noopener" target="_blank">youtu.be/a8T8ckUZHls</a></span>
-</div>
-</div>
-<div class="work-item">
-<span class="mark">▸</span>
-<div class="thumb playable-film"><iframe src="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/preview" title="Life Stories of Bobby Verdi — Kargil War Hero" loading="lazy" allow="autoplay" allowfullscreen></iframe></div>
-<div>
-<h3><a href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" rel="noopener" target="_blank">Life Stories of Bobby Verdi — Kargil War Hero</a></h3>
-<p>A documentary portrait of Bobby Verdi, a Kargil War hero. Traces his personal journey and the story behind his service.</p>
-<span class="url"><a href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" rel="noopener" target="_blank">drive.google.com/file/d/1_sU1k…</a></span>
-</div>
+<div class="independent-film-grid">
+  <article class="independent-film-card">
+    <div class="independent-film-player"><iframe src="https://www.youtube-nocookie.com/embed/a8T8ckUZHls?controls=1&rel=0" title="Yaadon Mein Rikt Sthaan | Empty Spaces in Memories" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <div class="independent-film-copy"><h3><a href="https://youtu.be/a8T8ckUZHls?si=PLoPqHYdYaqBQard" rel="noopener" target="_blank">Yaadon Mein Rikt Sthaan | Empty Spaces in Memories</a></h3><p>A quiet conversation between a grandmother and grandson about a home fading amidst urban development. Reflects on memory, belonging, and the slow transformation of the places we call home.</p><span class="url"><a href="https://youtu.be/a8T8ckUZHls?si=PLoPqHYdYaqBQard" rel="noopener" target="_blank">youtu.be/a8T8ckUZHls</a></span></div>
+  </article>
+  <article class="independent-film-card">
+    <div class="independent-film-player"><iframe src="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/preview" title="Life Stories of Bobby Verdi — Kargil War Hero" loading="lazy" allow="autoplay" allowfullscreen></iframe></div>
+    <div class="independent-film-copy"><h3><a href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" rel="noopener" target="_blank">Life Stories of Bobby Verdi — Kargil War Hero</a></h3><p>A documentary portrait of Bobby Verdi, a Kargil War hero. Traces his personal journey and the story behind his service.</p><span class="url"><a href="https://drive.google.com/file/d/1_sU1kICmd284QltlVgxTu8lK-3TwKtkO/view" rel="noopener" target="_blank">drive.google.com/file/d/1_sU1k…</a></span></div>
+  </article>
 </div>
 </section>
 <!-- EVENT FILMS -->
