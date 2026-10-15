@@ -1431,6 +1431,16 @@ a{
   }
 }
 </style>
+<style id="podcast-embedded-players">
+.podcast-player-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:22px}
+.podcast-player{min-width:0;border-bottom:1px solid var(--rule);padding-bottom:22px}
+.podcast-embed{position:relative;width:100%;aspect-ratio:16/9;background:#e9e7e1;overflow:hidden}
+.podcast-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.podcast-player h3{font-size:1rem;line-height:1.4;margin:14px 0 7px;font-weight:500}
+.podcast-player p{font-size:.88rem;line-height:1.55;margin:0;color:var(--muted,#666)}
+@media(max-width:700px){.podcast-player-grid{grid-template-columns:1fr;gap:24px}}
+</style>
+
 </head>
 <body>
 <div class="site-logo-wrap">
@@ -1545,26 +1555,24 @@ Your browser does not support the video tag.
 <div class="holes"><span></span><span></span><span></span></div>
 <small>Podcast</small>
 </div>
-<div class="work-item">
-<span class="mark">▸</span>
-<div class="thumb empty">↗</div>
-<div>
-<h3><a href="https://youtube.com/playlist?list=PL8mp3NkI8JS_lKqzvYMaImQKw-EeFXYas" rel="noopener" target="_blank">Delhi Stories | A Delhi Love with Yasmin Kidwai</a></h3>
-<p>Podcast series with Red FM — 25+ episodes. Editor and Director for the full series.</p>
-<span class="url"><a href="https://youtube.com/playlist?list=PL8mp3NkI8JS_lKqzvYMaImQKw-EeFXYas" rel="noopener" target="_blank">youtube.com/playlist?list=PL8mp3…</a></span>
+<div class="podcast-player-grid">
+  <article class="podcast-player">
+    <div class="podcast-embed">
+      <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PL8mp3NkI8JS_lKqzvYMaImQKw-EeFXYas" title="Delhi Stories | A Delhi Love with Yasmin Kidwai" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <h3>Delhi Stories | A Delhi Love with Yasmin Kidwai</h3>
+    <p>Podcast series with Red FM — 25+ episodes. Editor and Director for the full series.</p>
+  </article>
+  <article class="podcast-player">
+    <div class="podcast-embed">
+      <iframe src="https://www.youtube-nocookie.com/embed/F_j5M5GvxSw?start=1" title="The UnTamed Actor — Sandhya Mridul, Breaks Her Silence" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <h3>The UnTamed Actor — Sandhya Mridul, Breaks Her Silence</h3>
+    <p>Podcast episode featuring Sandhya Mridul. Cinematography and edit by Gaurank Mishra.</p>
+  </article>
 </div>
-</div>
-<div class="work-item">
-<span class="mark">▸</span>
-<div class="thumb"><a href="https://www.youtube.com/watch?v=F_j5M5GvxSw&t=1s" rel="noopener" target="_blank" aria-label="Watch The UnTamed Actor on YouTube"><img alt="The UnTamed Actor — Sandhya Mridul, Breaks Her Silence" loading="lazy" src="https://img.youtube.com/vi/F_j5M5GvxSw/maxresdefault.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"/></a></div>
-<div>
-<h3><a href="https://www.youtube.com/watch?v=F_j5M5GvxSw&t=1s" rel="noopener" target="_blank">The UnTamed Actor — Sandhya Mridul, Breaks Her Silence</a></h3>
-<p>Podcast episode featuring Sandhya Mridul. Cinematography and edit by Gaurank Mishra.</p>
-<span class="url"><a href="https://www.youtube.com/watch?v=F_j5M5GvxSw&t=1s" rel="noopener" target="_blank">youtube.com/watch?v=F_j5M5GvxSw</a></span>
-</div>
-</div>
-
-</section><!-- PRESS & FEATURES -->
+</section>
+<!-- PRESS & FEATURES -->
 <section class="work-section" id="press">
 <div class="divider-strip">
 <div class="holes"><span></span><span></span><span></span></div>
