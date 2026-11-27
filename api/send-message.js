@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, message } = req.body || {};
+    const { name, email, message, phone, project, budget, timeline, source } = req.body || {};
 
     if (!name || !email || !message) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -29,17 +29,28 @@ export default async function handler(req, res) {
     const cleanName = sanitize(name).slice(0, 200);
     const cleanEmail = sanitize(email).slice(0, 200);
     const cleanMessage = sanitize(message).slice(0, 5000);
+    const extras = [
+      ['Phone / WhatsApp', phone],
+      ['Project', project],
+      ['Budget', budget],
+      ['Timeline', timeline],
+      ['Found via', source]
+    ].map(([k, v]) => [k, sanitize(v).slice(0, 200)]).filter(([, v]) => v);
+    const extrasText = extras.map(([k, v]) => `${k}: ${v}`).join('\n');
+    const extrasHtml = extras.map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`).join('');
+    const cleanProject = extras.find(([k]) => k === 'Project');
 
     await resend.emails.send({
       from: 'Portfolio Site <site@lallanchitra.com>',
       to: 'gaurank@lallanchitra.com',
       reply_to: cleanEmail,
-      subject: `New message from ${cleanName} (via lallanchitra.com)`,
-      text: `Name: ${cleanName}\nEmail: ${cleanEmail}\n\nMessage:\n${cleanMessage}`,
+      subject: `New enquiry${cleanProject ? ' — ' + cleanProject[1] : ''} from ${cleanName} (lallanchitra.com)`,
+      text: `Name: ${cleanName}\nEmail: ${cleanEmail}\n${extrasText}\n\nMessage:\n${cleanMessage}`,
       html: `
         <div style="font-family:sans-serif; font-size:14px; color:#16160f;">
           <p><strong>Name:</strong> ${cleanName}</p>
           <p><strong>Email:</strong> ${cleanEmail}</p>
+          ${extrasHtml}
           <p><strong>Message:</strong></p>
           <p style="white-space:pre-wrap;">${cleanMessage}</p>
         </div>

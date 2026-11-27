@@ -280,7 +280,7 @@
     .contact__grid { display: grid; grid-template-columns: 1fr minmax(280px, 2fr); gap: 42px; border-top: 1px solid var(--rule); padding-top: 17px; }
     .contact__intro p { max-width: 30ch; color: var(--ink-soft); }
     .contact-form { display: grid; gap: 12px; }
-    .contact-form input, .contact-form textarea {
+    .contact-form input, .contact-form textarea, .contact-form select {
       width: 100%;
       padding: 13px 0;
       border: 0;
@@ -479,6 +479,11 @@
         <form class="contact-form" id="contact-form">
           <label><span class="visually-hidden">Your name</span><input name="name" type="text" placeholder="Your name" required></label>
           <label><span class="visually-hidden">Your email</span><input name="email" type="email" placeholder="Your email" required></label>
+          <label><span class="visually-hidden">Phone or WhatsApp (optional)</span><input name="phone" type="tel" placeholder="Phone or WhatsApp (optional)" autocomplete="tel"></label>
+          <label><span class="visually-hidden">What do you need?</span><select name="project" required><option value="" disabled selected>What do you need?</option><option>Documentary film</option><option>Brand film / commercial</option><option>Event or concert film</option><option>Social reels</option><option>Video editing / colour grading</option><option>AI-assisted video</option><option>Something else</option></select></label>
+          <label><span class="visually-hidden">Budget (approx.)</span><select name="budget"><option value="" disabled selected>Budget (approx.)</option><option>Under ₹50,000</option><option>₹50,000 – ₹1.5 lakh</option><option>₹1.5 – 5 lakh</option><option>₹5 lakh+</option><option>International / USD project</option><option>Not sure yet</option></select></label>
+          <label><span class="visually-hidden">When do you need it?</span><select name="timeline"><option value="" disabled selected>When do you need it?</option><option>Within 2 weeks</option><option>In 1–2 months</option><option>In 3+ months</option><option>Just exploring</option></select></label>
+          <label><span class="visually-hidden">How did you find me?</span><select name="source"><option value="" disabled selected>How did you find me?</option><option>Google search</option><option>Instagram</option><option>YouTube</option><option>LinkedIn</option><option>Upwork / Fiverr</option><option>Referral</option><option>Other</option></select></label>
           <label><span class="visually-hidden">Your message</span><textarea name="message" placeholder="Tell me about the project" required></textarea></label>
           <button type="submit">Send message →</button>
           <p class="form-status" aria-live="polite"></p>
@@ -489,7 +494,7 @@
 
   <footer class="footer wrap">© <span id="year"></span> Lallan Chitra · Gaurank Mishra · Filmmaker, New Delhi · <a href="services.html">Services</a> · <a href="work/empty-spaces-in-memory.html">Empty Spaces in Memory</a> · <a href="video-essays.html">Video essays</a> · <a href="photography.html">Photography</a> · <a href="blog.html">Writing</a></footer>
 
-  <style>.visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }</style>
+  <style>.visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }.contact-form select { appearance:none; -webkit-appearance:none; cursor:pointer; font: inherit; } .contact-form select:invalid, .contact-form select:has(option[value=""]:checked) { color: #757575; } .contact-form select option { color:#16160f; }</style>
   <script>
     const previewVideos = document.querySelectorAll(".project-media video");
 
